@@ -1,9 +1,12 @@
+body{
+	width: 100%;
+}
+
 #logo{
 	text-decoration: none;
-	text-align: center;
 	color: #FFFFFF;
 	text-shadow: 3px 3px 3px #111111;
-	width: 100%;
+	width: 80%;
 }
 
 #menu_nav {
@@ -26,10 +29,8 @@
 	border-color: #FFFFFF;
 }
 
-
-
 #menu_nav li{
-	padding: 0px 10px 0px 18px;
+	padding: 5px 10px 5px 18px;
 }
 
 #menu_nav a{  
@@ -57,3 +58,10 @@ nav{
 	min-height: 105px;
 
 }
+footer{	
+	width: 100%;
+	min-height: 105px;	
+}
+
+
+

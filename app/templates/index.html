@@ -2,53 +2,53 @@
 <html lang="pt-br">
 
 <head>
-	<title> Booker - {{ title }} </title>
-	<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
-
+	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='viewport' content="width=device-width, initial-scale=1">
-	<meta>
-	<meta>
 	
+	<title> Booker - {{ title }} </title>
+	<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
-
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 
 <body>
 
-	<header>
+	<div class="container-fluid bg-dark"> 
+		<div class="row"> 
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 offset-md-9">
+				<nav class="navbar navbar-expand-sm bg-dark navbar-light" id='navTop'>
+					<ul class="navbar-nav">
+					    <li class="nav-item active">
+					      	<a class="nav-link" href="#">Donate</a>
+					    </li>
+					    <li class="nav-item">
+					      	<a class="nav-link" href="#">About us</a>
+					    </li>
+					    <li class="nav-item">
+					      	<a class="nav-link" href="#">Git</a>
+					    </li>
+					    <li class="nav-item">
+					      	<a class="nav-link" href="#">In</a>
+					    </li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<header class="bg-primary">
 		<div class="container-fluid">
 			<div class="row">
-				<nav class="navbar navbar-expand-md bg-primary navbar-primary">		
-					<div class="col-sm-6" style="width: 80%">	
-						<a id='logo' href="/">
-							<h2 class="display-4"> Booker </h2>
-						</a>
-					</div>
-					<div style="width: 20%" id="responsiveButton">
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-							<hr class="hrStyle">
-							<hr class="hrStyle">
-							<hr class="hrStyle">
-						</button>
-					</div>
-
-					<div class="col-sm-6">
-					  	<div class="collapse navbar-collapse" id="collapsibleNavbar">
-					  		<div id='menu_nav'>
-						    	<ul class="navbar-nav">
-							      	<li class="nav-item"><a href="" class="nav-brand">About us</a></li>	
-							      	<li class="nav-item"><a href="" class="">Books</a></li>
-							      	<li class="nav-item"><a href="/perfil" class="">Profile</a></li>
-							      	<li class="nav-item"><a href="/" class="">Home</a></li>
-						    	</ul>
-					    	</div>
-					  	</div>
-					</div>
-				</nav>
+				<div class="col-sm-12">	
+					<a id='logo' href="/">
+						<h2 class="display-4"> Booker </h2>
+					</a>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -93,9 +93,23 @@
 							<label> Remember me </label>
 							</div>
 									
-							<button id='submitBt' class="btn btn-info"> Sign In </button>
+							<button id='submitBt' type='submit' class="btn btn-info"> Sign In </button>
 							
 							<button id='register' type='button' class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Register </button>
+
+							{% with messages = get_flashed_messages() %}
+								{% if messages and messages[0][0] == 'l'%}
+									{% print(messages) %}
+									<div class="alert alert-warning" id='alert_login'>						    	
+									    {% for message in messages %}
+									    	{% if message[0] == 'l'%}
+									      		<p class="lead">{{ message[2:] }}</p>
+									    	{% endif %}
+									    {% endfor %}
+							    	</div>
+							    {% endif %}
+							{% endwith %}
+
 						</form>
 						
 					</div>
@@ -133,11 +147,22 @@
 						       		<div class="form-group">
 						       		<label> Email Adress </label>	
 						       		 	{{rform.email(class='form-control', placeholder='Type Email here')}}
-						       		 </div>
-						       		 <div class="checkbox">	
+						       		</div>
+						       		<div class="checkbox">	
 						       		 	{{rform.terms}}
 						       		 	<a href=""> I Agree with terms of use </a>
-						       		 </div>
+						       		</div>
+						       		{% with messages = get_flashed_messages() %}
+									    {% if messages %}
+											<div class="alert alert-warning">
+											    {% for message in messages %}
+											    	{% if message[0] == 'r'%}
+											      		<p class="lead">{{ message[2:] }}</p>
+											    	{% endif %}
+											    {% endfor %}
+									    	</div>
+									    {% endif %}
+									{% endwith %}
 						       	
 						    </div>
 				        </div>

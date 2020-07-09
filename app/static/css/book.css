@@ -1,0 +1,41 @@
+.card {
+	margin: 20px 0;
+	width: 100%;
+	min-width: 200px;
+	min-height: 320px;
+}
+
+.card-inside {
+	margin: 1%;
+	background-color: white;
+}
+
+.card-head button {
+	float: right;
+	padding: 0px 10px;
+}
+
+.card-head img {
+	float: center;
+}
+
+#centerPage .col-sm-4 {
+	float: center; 
+}
+
+.card-body {
+	text-align: left;
+}
+
+.card-head {
+	border-color: #111111;
+	border-width: medium;
+	text-align: center;
+	min-height: 160px;
+}
+
+#centerPage {
+	background-color: white;
+	width: 100%;
+	min-height: 444px;
+}
