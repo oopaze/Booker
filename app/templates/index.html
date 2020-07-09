@@ -99,7 +99,6 @@
 
 							{% with messages = get_flashed_messages() %}
 								{% if messages and messages[0][0] == 'l'%}
-									{% print(messages) %}
 									<div class="alert alert-warning" id='alert_login'>						    	
 									    {% for message in messages %}
 									    	{% if message[0] == 'l'%}
