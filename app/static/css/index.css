@@ -1,0 +1,49 @@
+body {
+	width: 100%;
+}
+#siderbar{
+	background-color: blue;
+}
+
+#register{
+	margin: 0px;
+	width: 25%;
+}
+
+#submitBt{
+	margin: 1%;
+	width: 25%;
+}
+
+#formLogin label{
+	padding: 0% 3%;
+}
+
+.textConteiner{
+	text-align: center;
+	width: 90%;
+	min-height: 380px;
+	padding: 4% 4%;
+	margin: 0% 0% 2% 4%;
+	border-radius: 10px; 
+	background-color: white;
+	box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+}
+
+.textConteiner button{
+	min-width: 120px;
+}
+
+.modelStyle{
+	text-align: center;
+}
+
+#conteudo {
+	background-image: url('/static/image/reading.jpg');
+	background-size: cover;
+	min-height: 449px;
+	padding-top: 3%; 
+}
+footer {
+	min-height: 100px;
+}
