@@ -8,15 +8,17 @@
 .card-inside {
 	margin: 1%;
 	background-color: white;
-}
+}	
 
 .card-head button {
-	float: right;
-	padding: 0px 10px;
+	position: fixed;
+	padding: 2px 10px;
 }
 
-.card-head img {
-	float: center;
+.card-head {
+	background-image: url('app/static/image/reading.jpg');
+	background-size: cover;
+	width: 100%;
 }
 
 #centerPage .col-sm-4 {
@@ -28,13 +30,12 @@
 }
 
 .card-head {
-	border-color: #111111;
-	border-width: medium;
 	text-align: center;
 	min-height: 160px;
 }
 
 #centerPage {
+	padding-top: 30px;
 	background-color: white;
 	width: 100%;
 	min-height: 444px;

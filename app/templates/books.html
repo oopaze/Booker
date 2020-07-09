@@ -8,6 +8,7 @@
 	
 
 	<title> Booker - {{ title }} </title>
+	<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/book.css')}}">
@@ -58,7 +59,7 @@
 	<div class="container-fluid bg-muted" id='centerPage'>
 		{% for i in range(0, 1) %}
 			<div class="row">
-					{% for i in range(0, 0) %}
+					{% for i in range(0, 3) %}
 				
 					<div class="col-md-4">
 						<div class="card bg-success">
@@ -67,7 +68,8 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								        <span aria-hidden="true">&times;</span>
 								     </button>
-									<img class="card-img-top" src="img_avatar1.png" alt="Card image">
+									<img class="card-img-top" src="{{ url_for('static', filename='image/reading.jpg') }}" alt="Card image">
+									<p class="lead"> Comentário </p>
 							  	</div>
 							  	<div class="card-body">
 							    	<h4 class="card-title">Book Name</h4>
