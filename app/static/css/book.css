@@ -1,0 +1,42 @@
+.card {
+	margin: 20px 0;
+	width: 100%;
+	min-width: 200px;
+	min-height: 320px;
+}
+
+.card-inside {
+	margin: 1%;
+	background-color: white;
+}	
+
+.card-head button {
+	position: fixed;
+	padding: 2px 10px;
+}
+
+.card-head {
+	background-image: url('app/static/image/reading.jpg');
+	background-size: cover;
+	width: 100%;
+}
+
+#centerPage .col-sm-4 {
+	float: center; 
+}
+
+.card-body {
+	text-align: left;
+}
+
+.card-head {
+	text-align: center;
+	min-height: 160px;
+}
+
+#centerPage {
+	padding-top: 30px;
+	background-color: white;
+	width: 100%;
+	min-height: 444px;
+}
