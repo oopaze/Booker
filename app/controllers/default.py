@@ -18,8 +18,8 @@ def index():
 	RegisterForm_ = RegisterForm()
 
 	if Loginform_.validate_on_submit():
-		userNow = readUser(username=Loginform_.username.data)
-		if	userNow and userNow.password == Loginform_.password.data:
+		userNow = readUser(username=Loginform_.username.data.lower())
+		if	userNow and userNow.password == Loginform_.password.data.lower():
 			login_user(userNow)
 			global user
 			user = userNow

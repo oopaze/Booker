@@ -1,64 +1,44 @@
-body{
+body {
 	width: 100%;
+}
+
+header{
+	width: 100%;
+	min-height: 90px;
+}
+
+header nav {
+	width: 100%;
+}
+
+#navbarNavDropdown{
+	width: 100%;;
+}
+
+.text-light{
+	padding: 0 3%;
+}
+
+#logo-menu {
+	max-width: 80%; 
+	float: left;
+}
+
+#button-menu {
+	max-width: 20%; 
+	float: right; 
+	padding-top: 20px;	
 }
 
 #logo{
 	text-decoration: none;
+	text-align: left;
 	color: #FFFFFF;
 	text-shadow: 3px 3px 3px #111111;
 	width: 80%;
+	padding-top: 1px;
 }
 
-#responsiveButton{
-	float: right;
-	padding: 2% 0;
-	padding-right: 2px; 
+footer {
+	min-height: 100px;
 }
-
-#responsiveButton button{
-	background-color: #1d1d4b;
-	height: 75px;
-	width: 60%;
-	min-width: 60px;
-}
-
-.hrStyle{
-	border-color: #FFFFFF;
-}
-
-#menu_nav li{
-	padding: 5px 10px 5px 18px;
-}
-
-#menu_nav a{  
-	text-decoration: none;
-	color: #FFFFFF;
-	text-shadow: 1px 1px 1px #777777;
-	border-radius: 2px;
-
-}
-
-
-#menu_nav a:hover{
-	color: #111111;
-	text-shadow: 1px 1px 1px #DDDDDD;
-
-}
-header{
-	width: 100%;
-	min-height: 105px;
-}
-
-nav{
-	width: 100%;
-	padding-top: 10px;
-	min-height: 105px;
-
-}
-footer{	
-	width: 100%;
-	min-height: 105px;	
-}
-
-
-
