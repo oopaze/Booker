@@ -10,7 +10,6 @@
 	<title> Booker - {{ title }} </title>
 	<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/book.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -38,6 +37,7 @@
 					    	
 						    <a class="text-light" href="#">Profile</a>
 						    <a class="text-light" href="#">Books</a>
+						    <a class="text-light" href="#">About Us</a>
 						    <a href="{{ url_for('logout') }}" class="text-light" href="#">Logout</a>
 						    
 					  	</div>
