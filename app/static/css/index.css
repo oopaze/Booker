@@ -11,15 +11,23 @@ header nav {
 	width: 100%;
 }
 
-header ul {
-	padding: 10px 5px 10px 0px; 
-	text-align: right;
-	min-width: 400px;
+#navbarNavDropdown{
+	width: 100%;;
 }
 
-header li {
-	float: right;
-	padding: 0px 0px 0px 20px;
+.text-light{
+	padding: 0 3%;
+}
+
+#logo-menu {
+	max-width: 80%; 
+	float: left;
+}
+
+#button-menu {
+	max-width: 20%; 
+	float: right; 
+	padding-top: 20px;	
 }
 
 #logo{
@@ -64,7 +72,7 @@ header li {
 	width: 90%;
 	min-height: 380px;
 	padding: 4% 4%;
-	margin: 0% 0% 2% 4%;
+	margin: 0% 2% 2% 5%;
 	border-radius: 10px; 
 	background-color: white;
 	box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);

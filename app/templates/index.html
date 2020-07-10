@@ -18,61 +18,37 @@
 	<header>
 		<div class="container-fluid">
 		  	<div class="row">
-					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		  			<div style="width: 100%;">
-				  		<div style=" max-width: 80%; float: left;">	
+				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		  			<div class="col-md-4">
+				  		<div id='logo-menu'>	
 							<a id='logo' href="/">
 								<h2 class="display-4"> Booker </h2>
 							</a>
 						</div>
-						<div style=" max-width: 20%; float: right; padding-top: 20px;">
+						<div id='button-menu'>
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 							    <span class="navbar-toggler-icon"></span>
 							</button>
 						</div>
 					</div>
-					<div style="float: right;">
+					<div class="col-md-4 offset-md-3">
 					  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					    	<ul class="navbar-nav">
-						      	<li class="nav-item">
-						        	<a class="text-light" href="#">About Us</a>
-						      	</li>
-						      	<li class="nav-item">
-						        	<a class="text-light" href="#">Donate</a>
-						      	</li>
-						      	<li class="nav-item">
-						        	<a class="text-light" href="#">Git</a>
-						      	</li>
-						      	<li class="nav-item">
-						        	<a class="text-light" href="#">Linked In</a>
-						      	</li>
-					    	</ul>
+					    	
+						    <a class="text-light" href="#">About Us</a>
+						    <a class="text-light" href="#">Donate</a>
+						    <a class="text-light" href="#">Git</a>
+						    <a class="text-light" href="#">Linked In</a>
+						    
 					  	</div>
 					</div>
-		</nav>
-				</div>
+				</nav>
 			</div>
+		</div>
 	</header>
 
 	<div class="container-fluid">
 		<div id='conteudo' class="row">
-			<div class="col-sm-1">
-				
-			</div>
-			<div id="centerContainer" class="col-md-5">
-				<div class="textConteiner">
-					<h2 class=""> What is the Booker Repository? </h2> 
-					<hr/>
-					<p class='text-justify lead'>
-						 Just like his name, Booker is a repository where you control witch book your reading or read. It's useful when you want to indicate a book to a friend and you do not remeber its name, then you come to Booker and indicate books to him, easy 
-						 and fast.  
-							 
-					</p>
-				</div>
-			</div>
-			
-
-			<div class="col-md-5">
+			<div class="col-md-5 offset-md-1">
 				<div class="textConteiner">
 					<div id='formLogin'>
 						<form action=""  method="POST">
@@ -116,6 +92,20 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="col-md-5">
+				<div class="textConteiner">
+					<h2 class=""> What is the Booker Repository? </h2> 
+					<hr/>
+					<p class='text-justify lead'>
+						 Just like his name, Booker is a repository where you control witch book your reading or read. It's useful when you want to indicate a book to a friend and you do not remeber its name, then you come to Booker and indicate books to him, easy 
+						 and fast.  
+							 
+					</p>
+				</div>
+			</div>
+			
+
 
 
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
