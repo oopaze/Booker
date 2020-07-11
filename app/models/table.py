@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+from flask import url_for 
 
 class User(db.Model):
 	__tablename__ = 'users'
@@ -7,16 +8,15 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key='True')
 	username = db.Column(db.String(20), unique=True)
 	password = db.Column(db.String)
-	image = db.Column(db.LargeBinary)
+	#image = db.Column(db.LargeBinary)
 	name = db.Column(db.String)
 	email = db.Column(db.String)
 	
-	def __init__(self, username, password, name, email, image):
+	def __init__(self, username, password, name, email, image=None):
 		self.username = username
 		self.password = password
 		self.name = name
 		self.email = email
-		self.image = image
 
 	@property
 	def is_authenticated(self):

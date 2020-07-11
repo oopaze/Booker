@@ -4,11 +4,13 @@ from app import app, db
 def createUser(username=None, password=None, email=None, name=None):
 	try:
 		newUser = User(username, password, email, name)	
+		print(newUser)
 		db.session.add(newUser)
 		db.session.commit()
 		return True
 
-	except Exception:
+	except Exception as e:
+		print(e)
 		return False
 
 def readUser(username=None, password=None, id=None):

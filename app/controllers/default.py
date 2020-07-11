@@ -24,13 +24,14 @@ def index():
 
 	if RegisterForm_.validate_on_submit():
 			form = dict(RegisterForm_.data)
+			print('ola')
 			if createUser(username=form['username'], password=form['password'],
 						  email=form['email'], name=form['name']):
 				
 				return redirect(url_for('index'))
 		
 	registeredAlert = False
-	RegisterForm_.data['password'] = ''
+	RegisterForm_.data['passw'] = ''
 	Loginform_.data['password'] = ''
 	return render_template('index.html', title='home',
 	 						lform=Loginform_, rform=RegisterForm_,)
