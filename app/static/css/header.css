@@ -4,7 +4,6 @@ body {
 
 header{
 	width: 100%;
-	max-height: 
 }
 
 header nav {
@@ -13,11 +12,11 @@ header nav {
 }
 
 #navbarNavDropdown{
-	width: 100%;;
+	width: 100%;
 }
 
-.menu-opcoes{
-	padding: 0px 2%; 
+.menu-item{
+	padding-right: 8px; 
 }
 
 #logo-menu {
