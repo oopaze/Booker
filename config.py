@@ -5,20 +5,19 @@ DEBUG = True
 
 SECRET_KEY = 'MinhaNamoradaEUmaGostosinhaLinda'
 
-
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'storage.db')
-SQLALCHEMY_TRACK_MODIFICATIONS = True
-
-
-'''POSTGRES = {
+POSTGRES = {
     'user': 'postgres',
-    'pw': 'password',
-    'db': 'my_database',
+    'pw': '1112',
+    'db': 'flask-app',
     'host': 'localhost',
     'port': '5432',
 }
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{POSTGRES.user}:\
-{POSTGRES.pw}@{POSTGRES.host}:{POSTGRES.port}/{POSTGRES.db}'''
+
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'storage.db')
+SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES['user']}:{POSTGRES['pw']}@{POSTGRES['host']}:{POSTGRES['port']}/{POSTGRES['db']}"
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+
 
 
 
