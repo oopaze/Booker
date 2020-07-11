@@ -18,8 +18,8 @@
 	</head>
 
 	<body>
-		<header>
-			<div class="container-fluid">
+		<div class="container-fluid">
+			<header>
 			  	<div class="row">
 					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			  			<div class="col-md-4">
@@ -37,21 +37,53 @@
 						<div class="col-md-4 offset-md-4">
 						  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						    	
-							    <a class="text-light menu-opcoes" href="#">Profile</a>
-							    <a class="text-light menu-opcoes" href="#">Books</a>
-							    <a class="text-light menu-opcoes" href="#">About Us</a>
-							    <a href="{{ url_for('logout') }}" class="text-light menu-opcoes" href="#">Logout</a>
+							    <a class="text-light menu-item" href="#">Profile</a>
+							    <a class="text-light menu-item" href="#">Books</a>
+							    <a class="text-light menu-item" href="#">About Us</a>
+							    <a href="{{ url_for('logout') }}" class="text-light menu-item" href="#">Logout</a>
 							    
 						  	</div>
 						</div>
 					</nav>
 				</div>
+			</header>
+		</div>
+
+
+		<div class="container-fluid" id='centerPage'>
+			<div class="row" id='Welcome'>
+				<div class="col-md-6 offset-md-3">
+					<div class="card-dados btn btn-danger ">
+						<p class="lead welcome-text"> Welcome to Booker, {{ current_user.username }}!</p>
+					</div>
+				</div>
 			</div>
-		</header>
 
+			<div  class="row">
+				<div class="col-md-4 buttons-conteiner">    
+				    <button type="button" class="btn Selector-Button btn-danger">Let's add a new book? </button>
+				</div> 
+				
+				<div class="col-md-4 buttons-conteiner">
+				    <button type="button" class="btn Selector-Button btn-danger"> u wanna a tip? </button>
+				</div>
 
-		<div class="container bg-muted" id='centerPage'>
-			
+				<div class="col-md-4 buttons-conteiner">
+				    
+				    <button type="button" class="btn Selector-Button btn-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
+							Any Category to Search?  <span class="caret"></span>
+				   	</button>
+
+				    <ul class="dropdown-menu" role="menu">
+				      <li><a href="#">Tablet</a></li>
+				      <li><a href="#">Smartphone</a></li>
+				    </ul>
+	
+				</div> 
+			</div>
+			<div>
+				
+			</div>
 		</div>
 
 

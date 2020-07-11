@@ -1,42 +1,66 @@
-.card {
-	margin: 20px 0;
+body {
 	width: 100%;
-	min-width: 200px;
-	min-height: 320px;
-}
-
-.card-inside {
-	margin: 1%;
-	background-color: white;
-}	
-
-.card-head button {
-	position: fixed;
-	padding: 2px 10px;
-}
-
-.card-head {
-	background-image: url('app/static/image/reading.jpg');
+	background-image: url('/static/image/fundo.jpg');
 	background-size: cover;
-	width: 100%;
-}
-
-#centerPage .col-sm-4 {
-	float: center; 
-}
-
-.card-body {
-	text-align: left;
-}
-
-.card-head {
-	text-align: center;
-	min-height: 160px;
 }
 
 #centerPage {
-	padding-top: 30px;
-	background-color: white;
+	padding-top: 10px;
 	width: 100%;
 	min-height: 444px;
+	background-color: rgba(255, 255, 255, 0.9);
 }
+
+.card-dados{
+	width: 100%;
+	max-height: 150px;
+	color: black;
+	text-align: center;	
+	max-width: 95%;
+	border-radius: 10px; 
+	box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+}
+
+
+.card-dados p {
+	padding-top: 8px;
+}
+
+#Welcome{
+	padding: 10px 0 20px 0;
+
+}
+
+.welcome-text{
+	color: white;
+}
+
+.welcome-text:hover{
+	color: black;
+}
+
+
+.Selector-Button{
+	width: 300px;
+	max-width: 95%;
+	min-height: 60px;
+	box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+}
+
+
+.buttons-conteiner{
+	padding: 1% 0;
+	text-align: center;
+	width: 95%;
+
+}
+
+
+
+
+
+
+
+
+
+
