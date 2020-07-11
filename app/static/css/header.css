@@ -16,7 +16,7 @@ header nav {
 }
 
 .menu-item{
-	padding: 0px 12px; 
+	padding: 0px 3%; 
 }
 
 #logo-menu {
@@ -40,5 +40,8 @@ header nav {
 }
 
 footer {
-	min-height: 100px;
+}
+
+.padding-define{
+	margin-top: 20px;
 }
