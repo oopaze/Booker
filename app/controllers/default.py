@@ -31,7 +31,7 @@ def index():
 				return redirect(url_for('index'))
 		
 	registeredAlert = False
-	RegisterForm_.data['passw'] = ''
+	RegisterForm_.data['password'] = ''
 	Loginform_.data['password'] = ''
 	return render_template('index.html', title='home',
 	 						lform=Loginform_, rform=RegisterForm_,)
