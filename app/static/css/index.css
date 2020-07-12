@@ -52,6 +52,6 @@ body {
 #conteudo {
 	background-image: url('/static/image/reading.jpg');
 	background-size: cover;
-	min-height: 449px;
+	min-height: 464px;
 	padding-top: 3%; 
 }
