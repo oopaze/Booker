@@ -8,15 +8,18 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key='True')
 	username = db.Column(db.String(20), unique=True)
 	password = db.Column(db.String)
-	#image = db.Column(db.LargeBinary)
+	#image = db.Column(db.LargeBinary, nullable=True)
 	name = db.Column(db.String)
 	email = db.Column(db.String)
+
+	books = db.relationship('Book', backref='users')
 	
 	def __init__(self, username, password, name, email, image=None):
 		self.username = username
 		self.password = password
 		self.name = name
 		self.email = email
+		self.image = image
 
 	@property
 	def is_authenticated(self):
@@ -36,72 +39,103 @@ class User(db.Model):
 	def __repr__(self):
 		return f'<User {self.name}>'
 
+Book_category = db.Table(
+	'book_category',
+	db.Column('book_id', db.Integer, db.ForeignKey('books.id')),
+	db.Column('category_id', db.Integer, db.ForeignKey('categories.id'))
+)
+
 
 class Book(db.Model):
 	__tablename__ = 'books'
 
-	book_id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True)
 	titulo = db.Column(db.String(50), nullable=False)
-	image = db.Column(db.LargeBinary)
+	#image = db.Column(db.LargeBinary)
 	autor = db.Column(db.String(30), default='Desconhecido')
+	comment = db.Column(db.String(30), default="Aaaah, depois eu comento esse livro!")
 	atualizado_em = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 	nota = db.Column(db.Float)
 
-	def __init__(self, titulo, autor, lido, atualizado_em):
+	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+
+	def __init__(self, titulo, autor, comment=None, nota=None):
+
 		self.titulo = titulo
 		self.autor = autor
-		self.atualizado_em = atualizado_em
+		self.nota = nota
+	
+		if comment:
+			self.comment = comment
 
 	def __repr__(self):
 		return f'<Book {self.titulo}>'
 
-
-class Categories(db.Model):
+class Category(db.Model):
 	__tablename__ = 'categories'
 
-	categoria_id = db.Column(db.Integer, primary_key=True)
-	categoria = db.Column(db.Integer, nullable=False, unique=True)
+	id = db.Column(db.Integer, primary_key=True)
+	categoria = db.Column(db.String(40), nullable=False, unique=True)
+
+	books = db.relationship(Book, 
+							secondary=Book_category, 
+							backref=db.backref('categories', 
+												lazy='dynamic'))
 
 	def __init__(self, categoria):
 		self.categoria = categoria
 
 	def __repr__(self):
 		return f'<Category {self.categoria}>'
-		
 
-class Book_category(db.Model):
+
+
+def testRelation():
 	
-	__tablename__ = 'book_category'
+	db.drop_all()
+	db.create_all()
 
-	id = db.Column(db.Integer, primary_key=True)
-	book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-	category_id = db.Column(db.Integer, db.ForeignKey('categories.categoria_id'))
+	categorias = 'Romance,Drama,Conto,Crônica,Poesia,Carta,Ficção,Aventura,Memórias,Biografia,Clássico,História em Quadrinhos (HQ),Literatura fantástica,Ficção científica,Fantasia,Sobrenatural,Realismo Mágico'
+	for x in categorias.split(','):
+		db.session.add(Category(x))
 
-	book = db.relationship('Book', foreign_keys=book_id)
-	category = db.relationship('Categories', foreign_keys=category_id)
+	db.session.commit()
 
-	def __init__(self, book_id, category_id):
-		self.book_id = book_id
-		self.category_id = category_id
+	b = Book(
+		titulo='As crônicas do gelo e fogo', 
+		autor='George R R Martin',
+	)
 
-	def __repr__(self):
-		return f'< Book/Category {self.id}>'
+	db.session.add(b)
 
-class User_book(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-	book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
+	#Add categoria ao livro
+	c = Category.query.get(4)
+	c.books.append(b)
 
-	user = db.relationship('User', foreign_keys=user_id)
-	book = db.relationship('Book', foreign_keys=book_id)
 
-	def __init__(self, user_id, book_id):
-		self.user_id = user_id
-		self.book_id = book_id
+	u = User(
+			username='kaah17', 
+			password='florzinha', 
+			email='kaah-sousa@gmail.com',
+			name='Caroline Ribeiro' 
+		)
 
-	def __repr__(self):
-		return f'<User/Book {self.id}>'
-		
+	u2 = User(
+			username='oopaze',
+			password='mae12345',
+			email='pedroosd28@gmail.com',
+			name='José Pedro da Silva Gomes'
+		)
+	db.session.add(u2)
+	db.session.add(u)
+
+	#adicionando relação entre livro e usuario
+	u.books.append(b)
+	
+	db.session.commit()
+
+
 
 
 

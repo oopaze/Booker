@@ -53,5 +53,6 @@ body {
 	background-image: url('/static/image/reading.jpg');
 	background-size: cover;
 	min-height: 464px;
-	padding-top: 3%; 
+	padding-top: 3%;
+	height: 90%; 
 }

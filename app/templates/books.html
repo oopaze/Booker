@@ -37,10 +37,10 @@
 						<div class="col-md-4 offset-md-4">
 						  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						    	
-							    <a class="text-light menu-item" href="#">Profile</a>
-							    <a class="text-light menu-item" href="#">Books</a>
-							    <a class="text-light menu-item" href="#">About Us</a>
-							    <a href="{{ url_for('logout') }}" class="text-light menu-item" href="#">Logout</a>
+							    <a class="text-light menu-item" href="#">Perfil</a>
+							    <a class="text-light menu-item" href="#">Livros</a>
+							    <a class="text-light menu-item" href="#"> Sobre </a>
+							    <a href="{{ url_for('logout') }}" class="text-light menu-item" href="#">Sair</a>
 							    
 						  	</div>
 						</div>
@@ -52,49 +52,90 @@
 
 		<div class="container-fluid" id='centerPage'>
 			<div class="row" id='Welcome'>
-				<div class="col-md-6 offset-md-3">
+				<div class="col-md-3 header-message-align">
 					<div class="card-dados btn btn-danger ">
-						<p class="lead welcome-text"> Welcome to Booker, {{ current_user.username }}!</p>
+		
+						<p class="lead welcome-text"> Seja bem vindo ao Booker, {{ current_user.username }}!</p>
+						
 					</div>
 				</div>
-			</div>
-
-			<div  class="row">
-				<div class="col-md-4 buttons-conteiner">    
-				    <button type="button" class="btn Selector-Button btn-danger">Let's add a new book? </button>
+			
+				<div class="col-md-3 buttons-conteiner">    
+				    <button type="button" class="btn Selector-Button btn-outline-danger">Deseja adicionar um livro? </button>
 				</div> 
 				
-				<div class="col-md-4 buttons-conteiner">
-				    <button type="button" class="btn Selector-Button btn-danger"> u wanna a tip? </button>
+				<div class="col-md-3 buttons-conteiner">
+				    <button type="button" class="btn Selector-Button btn-outline-danger"> Alguma dica? </button>
 				</div>
 
-				<div class="col-md-4 buttons-conteiner">
+				<div class="col-md-3 buttons-conteiner">
 				    
-				    <button type="button" class="btn Selector-Button btn-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
-							Any Category to Search?  <span class="caret"></span>
+				    <button type="button" class="btn Selector-Button btn-outline-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
+							Alguma categoria em especifico?  <span class="caret"></span>
 				   	</button>
 
-				    <ul class="dropdown-menu" role="menu">
-				      <li><a href="#">Tablet</a></li>
-				      <li><a href="#">Smartphone</a></li>
-				    </ul>
+				   	{% if categorias %}
+					    <ul class="dropdown-menu ul-size" role="menu">
+					    	{% for x in categorias %}
+					      		<li class="list-group-item">{{ x[0] }}</li>
+					      	{% endfor%}
+					    </ul>
+					{% endif %}
 	
 				</div> 
-			</div>
-			<div>
+			</div>		
+			<div class="row book-space">
 				
+				<div class="col-md-3 card-align-control">
+					<button class="card card-size-control align-center" style="width: 18rem;">
+						<div class="card-color">
+						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+						  	<div class="card-body">
+							    <h5 class="card-title">Book title</h5>
+							    <h6 class="card-subtitle mb-2 text-muted">Book Author</h6>
+							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
+							    <hr>
+						  	</div>
+						  	<div class="card-footer-control">
+						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
+						  		<a class="btn btn-outline-primary"> Abrir livro </a>
+						  	</div>
+					  	</div>
+					</button>
+				</div>
+
+
+				{% for book in books %}
+				
+				<div class="col-md-3 card-align-control">
+					<button class="card card-size-control">
+						<div class="card-color">
+						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+						  	<div class="card-body">
+							    <h5 class="card-title">{{ book.titulo }}</h5>
+							    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
+							    <p class="card-text"> {{book.comment}} </p>
+							 	<hr>
+						  	</div>
+						  	<div class="card-footer-control">
+						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
+						  		<a class="btn btn-outline-primary"> Abrir Livro </a>
+						  	</div>
+					  	</div>
+					</button>
+				</div>
+
+				{% endfor %}
 			</div>
 		</div>
 
 
 	<footer class="bg-primary">
-	    <div class="container">
-	      	<div class="row">
-	        	<div class="col-lg-6 h-10 text-center text-lg-center mx-auto" style="padding-top: 4%;">
-	        		  <p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
-	        	</div>
-			</div>
-	  	</div>
+	    <div class="footer-p">
+	    <p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
+	    </div>
+	    
+
 	</footer>
 
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

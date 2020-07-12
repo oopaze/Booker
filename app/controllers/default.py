@@ -1,9 +1,11 @@
 from app import app, db, lm
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models.table import Categories, User
+from app.models.table import Category, User, Book, testRelation
 from app.models.forms import LoginForm, RegisterForm
 from app.controllers.crud import readUser, createUser, updateUser, deleteUser
+
+
 
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
@@ -21,7 +23,7 @@ def index():
 
 		else:
 			flash('l-Invalid login')
-
+	
 	if RegisterForm_.validate_on_submit():
 			form = dict(RegisterForm_.data)
 			print('ola')
@@ -40,10 +42,19 @@ def index():
 @app.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def perfil():
-	if current_user.is_authenticated:
-		return render_template('perfil.html', title='perfil')
-	else:
-		return redirect(url_for('index'))
+	return redirect(url_for('index'))
+
+@app.route('/books', methods=['GET', 'POST'])
+@login_required
+def books():
+	books = Book.query.filter_by(owner=int(current_user.id)).all()
+	categories = Category.query.with_entities(Category.categoria)
+
+	return render_template('books.html',
+	 						title='books', 
+	 						user=current_user, 
+	 						categorias=categories,
+	 						books=books)
 
 @app.route('/logout')
 @login_required
@@ -51,11 +62,9 @@ def logout():
 	logout_user()
 	return redirect(url_for('index'))
 
-
-@app.route('/books', methods=['GET', 'POST'])
-@login_required
-def books():
-	return render_template('books.html', title='books', user=current_user)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	return 'you are in log in'
 
 @lm.unauthorized_handler
 def unauthorized_callback():            
