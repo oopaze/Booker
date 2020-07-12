@@ -65,7 +65,7 @@
 				</div> 
 				
 				<div class="col-md-3 buttons-conteiner">
-				    <button type="button" class="btn Selector-Button btn-outline-danger"> Alguma dica? </button>
+				    <button type="button" class="btn Selector-Button btn-outline-danger"> Quer alguma dica? </button>
 				</div>
 
 				<div class="col-md-3 buttons-conteiner">
@@ -98,7 +98,7 @@
 						  	</div>
 						  	<div class="card-footer-control">
 						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
-						  		<a class="btn btn-outline-primary"> Abrir livro </a>
+						  		<a class="btn btn-outline-primary"> Editar Livro </a>
 						  	</div>
 					  	</div>
 					</button>
@@ -108,7 +108,11 @@
 				{% for book in books %}
 				
 				<div class="col-md-3 card-align-control">
-					<button class="card card-size-control">
+					{% if book.lido %}
+					<button class="card bg-success card-size-control">
+					{% else %}
+					<button class="card bg-danger card-size-control">
+					{% endif %}
 						<div class="card-color">
 						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 						  	<div class="card-body">
@@ -119,7 +123,7 @@
 						  	</div>
 						  	<div class="card-footer-control">
 						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
-						  		<a class="btn btn-outline-primary"> Abrir Livro </a>
+						  		<a class="btn btn-outline-primary"> Editar Livro </a>
 						  	</div>
 					  	</div>
 					</button>

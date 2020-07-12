@@ -53,19 +53,22 @@ class Book(db.Model):
 	titulo = db.Column(db.String(50), nullable=False)
 	#image = db.Column(db.LargeBinary)
 	autor = db.Column(db.String(30), default='Desconhecido')
+	nota = db.Column(db.Float)
+	lido = db.Column(db.Boolean, default=False)
 	comment = db.Column(db.String(30), default="Aaaah, depois eu comento esse livro!")
 	atualizado_em = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
-	nota = db.Column(db.Float)
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
-	def __init__(self, titulo, autor, comment=None, nota=None):
+	def __init__(self, titulo, autor, comment=None, lido=None, nota=None):
 
 		self.titulo = titulo
 		self.autor = autor
 		self.nota = nota
-	
+		if lido:
+			self.lido = lido
+
 		if comment:
 			self.comment = comment
 
@@ -105,6 +108,7 @@ def testRelation():
 	b = Book(
 		titulo='As crônicas do gelo e fogo', 
 		autor='George R R Martin',
+		lido=True
 	)
 
 	db.session.add(b)
