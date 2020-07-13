@@ -89,9 +89,11 @@
 						<div class="card-color">
 						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 						  	<div class="card-body">
-							    <h5 class="card-title">Titulo</h5>
-							    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
-							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
+						  		<div style="height: 180px">
+								    <h5 class="card-title">Titulo</h5>
+								    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
+								    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
+							    </div>
 							    <div class="categorias">
 								    <label class="btn btn-outline-danger">Carta</label>
 								    <label class="btn btn-outline-danger">Ficção Cientifica</label>
@@ -117,9 +119,11 @@
 							<div class="card-color">    
 							    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 							  	<div class="card-body">
-								    <h5 class="card-title">{{ book.titulo }}</h5>
-								    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
-								    <p class="card-text text-justify-center"> {{book.comment}} </p>
+							  		<div style="height: 180px">
+									    <h5 class="card-title">{{ book.titulo }}</h5>
+									    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
+									    <p class="card-text text-justify-center"> {{book.comment}} </p>
+								    </div>
 								    <div class="categorias">
 								 	{% for category in book.categories %}
 								 		{% if book.lido %}

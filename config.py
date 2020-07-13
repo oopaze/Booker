@@ -25,8 +25,7 @@ class DevelopmentConfig(Config):
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	sqlite = 'sqlite:///' + os.path.join(basedir, 'storage.db')
 
-	DATABASE_URI = sqlite
-	SQLALCHEMY_DATABASE_URI = DATABASE_URI  
+	SQLALCHEMY_DATABASE_URI = sqlite 
 	DEBUG = True
 
 class TestingConfig(Config):
