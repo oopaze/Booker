@@ -16,7 +16,7 @@ class ProductionConfig(Config):
 		'port': '5432'
 		}
 	
-	postgres = 'postgres://{PSQL["user"]}:PSQL["pw"]@{PSQL["endereco"]}:{PSQL["port"]}/{PSQL["db"]}'
+	postgres = f'postgres://{PSQL["user"]}:PSQL["pw"]@{PSQL["endereco"]}:{PSQL["port"]}/{PSQL["db"]}'
 	DATABASE_URI = postgres
 	SQLALCHEMY_DATABASE_URI = DATABASE_URI
 	DEBUG = False
