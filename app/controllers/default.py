@@ -63,10 +63,6 @@ def logout():
 	logout_user()
 	return redirect(url_for('index'))
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	return 'you are in log in'
-
 @lm.unauthorized_handler
 def unauthorized_callback():            
        return redirect(url_for('index'))
