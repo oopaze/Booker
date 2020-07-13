@@ -126,7 +126,7 @@ body {
 
 .card-size-control{
 	align-items: center;
-	margin: 0px;
+	margin: 10px 0;
 	min-height: 530px; 
 	padding: 2px;
 	width: 100% !important;
@@ -169,7 +169,9 @@ body {
 }
 
 .card img {
-	padding-top: 25px;
+	padding-top: 30px;
 	max-height: 200px;
 	max-width: 200px; 
 }
+
+
