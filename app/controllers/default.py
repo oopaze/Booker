@@ -10,6 +10,7 @@ from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
 def index():
+	testRelation()
 	Loginform_= LoginForm()
 	RegisterForm_ = RegisterForm()
 

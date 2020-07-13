@@ -7,10 +7,10 @@ class User(db.Model):
 
 	id = db.Column(db.Integer, primary_key='True')
 	username = db.Column(db.String(20), unique=True)
-	password = db.Column(db.String)
+	password = db.Column(db.String(30))
 	#image = db.Column(db.LargeBinary, nullable=True)
-	name = db.Column(db.String)
-	email = db.Column(db.String)
+	name = db.Column(db.String(30))
+	email = db.Column(db.String(30))
 
 	books = db.relationship('Book', backref='users')
 	
@@ -56,7 +56,6 @@ class Book(db.Model):
 	nota = db.Column(db.Float)
 	lido = db.Column(db.Boolean, default=False)
 	comment = db.Column(db.String(30), default="Aaaah, depois eu comento esse livro!")
-	atualizado_em = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
