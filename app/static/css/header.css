@@ -15,15 +15,19 @@ header nav {
 	width: 100%;
 }
 
+#navbarNavDropdown a{
+	color: white;
+}
+
 .menu-item{
-	padding: 0px 20px 0px 5px; 
+	padding: 0px 15px 0px 5px; 
 	text-shadow: 1px 1px 1px #000000;
-	color: white !important;
+	color: white;
 }
 
 .menu-item:hover{
 	text-decoration: none;
-	color: #292b2c  !important;
+	color: #292b2c !important;
 }
 
 #logo-menu {
