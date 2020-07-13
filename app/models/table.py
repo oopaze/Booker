@@ -45,6 +45,17 @@ Book_category = db.Table(
 	db.Column('category_id', db.Integer, db.ForeignKey('categories.id'))
 )
 
+class Category(db.Model):
+	__tablename__ = 'categories'
+
+	id = db.Column(db.Integer, primary_key=True)
+	categoria = db.Column(db.String(40), nullable=False, unique=True)
+	
+	def __init__(self, categoria):
+		self.categoria = categoria
+
+	def __repr__(self):
+		return f'<Category {self.categoria}>'
 
 class Book(db.Model):
 	__tablename__ = 'books'
@@ -59,6 +70,10 @@ class Book(db.Model):
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+	categories = db.relationship(Category, 
+							secondary=Book_category, 
+							backref=db.backref('books', 
+												lazy='dynamic'))
 
 	def __init__(self, titulo, autor, comment=None, lido=None, nota=None):
 
@@ -73,24 +88,6 @@ class Book(db.Model):
 
 	def __repr__(self):
 		return f'<Book {self.titulo}>'
-
-class Category(db.Model):
-	__tablename__ = 'categories'
-
-	id = db.Column(db.Integer, primary_key=True)
-	categoria = db.Column(db.String(40), nullable=False, unique=True)
-
-	books = db.relationship(Book, 
-							secondary=Book_category, 
-							backref=db.backref('categories', 
-												lazy='dynamic'))
-
-	def __init__(self, categoria):
-		self.categoria = categoria
-
-	def __repr__(self):
-		return f'<Category {self.categoria}>'
-
 
 
 def testRelation():
@@ -114,7 +111,7 @@ def testRelation():
 
 	#Add categoria ao livro
 	c = Category.query.get(4)
-	c.books.append(b)
+	b.categories.append(c)
 
 
 	u = User(

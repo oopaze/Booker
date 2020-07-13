@@ -49,6 +49,104 @@
 			</header>
 		</div>
 
+		<div class="container-fluid" id='centerPage'>
+			<div class="row" id='Welcome'>
+				<div class="col-md-3 header-message-align">
+					<div class="card-dados btn btn-danger ">
+		
+						<p class="lead welcome-text"> Seja bem vindo ao Booker, {{ current_user.username }}!</p>
+						
+					</div>
+				</div>
+			
+				<div class="col-md-3 buttons-conteiner">    
+				    <button type="button" class="btn Selector-Button btn-outline-danger" data-toggle="modal" data-target="#InserirBook">Deseja adicionar um livro? </button>
+				</div> 
+				
+				<div class="col-md-3 buttons-conteiner">
+				    <button type="button" class="btn Selector-Button btn-outline-danger"> Quer alguma dica? </button>
+				</div>
+
+				<div class="col-md-3 buttons-conteiner">
+				    
+				    <button type="button" class="btn Selector-Button btn-outline-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
+							Alguma categoria em especifico?  <span class="caret"></span>
+				   	</button>
+
+				   	{% if categorias %}
+					    <ul class="dropdown-menu ul-size" role="menu">
+					    	{% for x in categorias %}
+					      		<li class="list-group-item">{{ x[0] }}</li>
+					      	{% endfor%}
+					    </ul>
+					{% endif %}
+	
+				</div> 
+			</div>		
+			<div class="row book-space">				
+				<div class="col-md-3">
+					<button class="card card-size-control align-center" style="width: 18rem;">
+						<div class="card-color">
+						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+						  	<div class="card-body">
+							    <h5 class="card-title">Titulo</h5>
+							    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
+							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
+							    <div class="categorias">
+								    <label class="btn btn-outline-danger">Carta</label>
+								    <label class="btn btn-outline-danger">Ficção Cientifica</label>
+								</div>
+							    <hr style="width: 100%; clear: both;">
+						  	</div>
+						  	<div class="card-footer-control">
+						  		<a class="card-button btn btn-danger"> Dar uma nota </a>
+						  		<a class="btn btn-danger"> Editar Livro </a>
+						  	</div>
+					  	</div>
+					</button>
+				</div>
+
+				{% for book in books %}
+				
+					<div class="col-md-3">
+						{% if book.lido %}
+							<button class="card card-size-control align-center bg-success" style="width: 18rem;">
+						{% else %}
+							<button class="card card-size-control align-center bg-danger" style="width: 18rem;">
+						{% endif %}	
+							<div class="card-color">    
+							    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+							  	<div class="card-body">
+								    <h5 class="card-title">{{ book.titulo }}</h5>
+								    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
+								    <p class="card-text text-justify-center"> {{book.comment}} </p>
+								    <div class="categorias">
+								 	{% for category in book.categories %}
+								 		{% if book.lido %}
+											<label class="btn btn-outline-success"> {{ category.categoria }} </label>
+										{% else %}
+											<label class="btn btn-outline-danger">{{ category.categoria }}</label>
+										{% endif %}
+									{% endfor %}
+									</div>
+								 	<hr style="width: 100%; clear: both;">
+							  	</div>
+							  	<div class="card-footer-control">
+							  		{% if book.lido %}
+							  			<a class="btn btn-success"> Dar uma nota </a>
+								  		<a class="btn btn-success"> Editar Livro </a>
+									{% else %}
+								  		<a class="btn btn-danger"> Dar uma nota </a>
+								  		<a class="btn btn-danger"> Editar Livro </a>
+									{% endif %}
+							  	</div>
+						  	</div>
+							</button>
+							</button>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 
 
 		<div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -95,108 +193,6 @@
 		  </div>
 		</div>
 
-
-
-
-		<div class="container-fluid" id='centerPage'>
-			<div class="row" id='Welcome'>
-				<div class="col-md-3 header-message-align">
-					<div class="card-dados btn btn-danger ">
-		
-						<p class="lead welcome-text"> Seja bem vindo ao Booker, {{ current_user.username }}!</p>
-						
-					</div>
-				</div>
-			
-				<div class="col-md-3 buttons-conteiner">    
-				    <button type="button" class="btn Selector-Button btn-outline-danger" data-toggle="modal" data-target="#InserirBook">Deseja adicionar um livro? </button>
-				</div> 
-				
-				<div class="col-md-3 buttons-conteiner">
-				    <button type="button" class="btn Selector-Button btn-outline-danger"> Quer alguma dica? </button>
-				</div>
-
-				<div class="col-md-3 buttons-conteiner">
-				    
-				    <button type="button" class="btn Selector-Button btn-outline-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
-							Alguma categoria em especifico?  <span class="caret"></span>
-				   	</button>
-
-				   	{% if categorias %}
-					    <ul class="dropdown-menu ul-size" role="menu">
-					    	{% for x in categorias %}
-					      		<li class="list-group-item">{{ x[0] }}</li>
-					      	{% endfor%}
-					    </ul>
-					{% endif %}
-	
-				</div> 
-			</div>		
-			<div class="row book-space">				
-				<div class="col-md-3 card-align-control">
-					<button class="card card-size-control align-center" style="width: 18rem;">
-						<div class="card-color">
-						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
-						  	<div class="card-body">
-							    <h5 class="card-title">Titulo</h5>
-							    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
-							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
-							    <div class="categorias">
-								    <label class="btn btn-outline-danger">Carta</label>
-								    <label class="btn btn-outline-danger">Ficção Cientifica</label>
-								</div>
-							    <hr style="width: 100%; clear: both;">
-						  	</div>
-						  	<div class="card-footer-control">
-						  		<a class="card-button btn btn-danger"> Dar uma nota </a>
-						  		<a class="btn btn-danger"> Editar Livro </a>
-						  	</div>
-					  	</div>
-					</button>
-				</div>
-
-
-				{% for book in books %}
-				
-				<div class="col-md-3 card-align-control">
-					{% if book.lido %}
-						<button class="card card-size-control align-center bg-success" style="width: 18rem;">
-					{% else %}
-						<button class="card card-size-control align-center bg-danger" style="width: 18rem;">
-					{% endif %}	
-						<div class="card-color">    
-						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
-						  	<div class="card-body">
-							    <h5 class="card-title">{{ book.titulo }}</h5>
-							    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
-							    <p class="card-text"> {{book.comment}} </p>
-							 	{% if book.lido %}
-									<label class="categorias btn btn-outline-success">Categoria</label>
-								    <label class="categorias btn btn-outline-success">Categoria</label>
-								{% else %}
-									<label class="categorias btn btn-outline-danger">Categoria</label>
-								    <label class="categorias btn btn-outline-danger">Categoria</label>
-								{% endif %}
-							 	<hr style="width: 100%; clear: both;">
-						  	</div>
-						  	<div class="card-footer-control">
-						  		{% if book.lido %}
-						  			<a class="btn btn-success"> Dar uma nota </a>
-							  		<a class="btn btn-success"> Editar Livro </a>
-								{% else %}
-							  		<a class="btn btn-danger"> Dar uma nota </a>
-							  		<a class="btn btn-danger"> Editar Livro </a>
-								{% endif %}
-						  	</div>
-					  	</div>
-					</button>
-				{% endfor %}
-				</div>
-				
-		</div>
-
-	</div>
-	<div class="container">
 		<div class="modal fade" id="InserirBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  	<div class="modal-dialog modal-dialog-centered" role="document">
 		    	<div class="modal-content">
@@ -209,8 +205,7 @@
 			      	</div>
 			      
 			      	<div class="modal-body" style="padding: 10px 30px;">
-			    		<div class="row">
-			    			<form action="" method="POST" id='form-book'>
+			    		<form action="/newBook" method="POST" id='form-book'>
 				      		<div class='book-form-style'>
 							    <label class="label-formart"> Titulo </label>
 					  	      	{{ newBook.titulo(class='form-control', placeholder='Titulo do Livro')}}
@@ -242,37 +237,30 @@
 							    	{{ newBook.file(id='filePut')}}
 							    </div>
 							</div class='book-form-style'>
-						    </div>
 
 						    <div class='book-form-style' style="width: 100%; text-align: center;">
 					      		{{ newBook.lido(id='lido')}}
 					      		<label id='lidoLB'>Vc leu esse livro?</label>
 						    </div>
-						</div>
+						</form>
 			      
 				      	<div class="modal-footer">
 				      		<button class="btn btn-dark" type="button" data-dismiss="modal"> Voltar </button>
 							<button class="btn btn-primary" type="submit"> Confirmar </button>
-							</form>
-				      	</div>
+				      	</div>				      	
 				    </div>
 				</div>
-
-					</div>
-				</div>
 			</div>
-	    </div>
-	</div>
-				      	
+		</div>
+	
+		
 
 
-	<footer class="bg-primary">
-	    <div class="footer-p">
-	    <p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
-	    </div>
-	    
-
-	</footer>
+		<footer class="bg-primary">
+		    <div class="footer-p">
+		    	<p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
+		    </div>
+		</footer>
 
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -280,4 +268,5 @@
 			<script src="{{ url_for('static', filename='js/books.js')}}"></script>
 
 	</body>
+
 </html>

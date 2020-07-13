@@ -1,7 +1,7 @@
 from app import app, db, lm
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models.table import Category, User, Book, testRelation
+from app.models.table import Category, User, Book, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 
@@ -10,7 +10,6 @@ from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
 def index():
-	testRelation()
 	Loginform_= LoginForm()
 	RegisterForm_ = RegisterForm()
 
@@ -51,7 +50,6 @@ def books():
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
 	categories = Category.query.with_entities(Category.categoria)
 
-	category_list = [(book.id, book.categoria) for book in books]
 	BookForm_ = BookForm()
 
 	return render_template('books.html',
@@ -60,6 +58,35 @@ def books():
 	 						categorias=categories,
 	 						books=books,
 	 						newBook=BookForm_)
+
+@app.route('/newBook', methods=['GET', 'POST'])
+@login_required
+def newBook():
+	user = current_user
+
+	form = request.form
+	
+	lido = True if 'lido' in dict(form).keys() else False
+
+	book = Book(titulo=form['titulo'],
+				autor=form['autor'],
+				comment=form['comentario'],
+				lido=lido)
+
+	categoria = Category.query.get(int(form['categoria1']))
+	categoria2 = Category.query.get(int(form['categoria2']))
+
+	db.session.add(book)
+	
+	book.categories.append(categoria)
+	book.categories.append(categoria2)
+
+	current_user.books.append(book)
+	db.session.commit()
+
+
+	return redirect(url_for('books'))
+
 
 @app.route('/logout')
 @login_required
@@ -73,6 +100,7 @@ def unauthorized_callback():
 
 @lm.user_loader
 def load_user(user_id):
+    
     return User.query.filter_by(id=user_id).first()
 
 

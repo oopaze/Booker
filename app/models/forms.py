@@ -35,6 +35,6 @@ class BookForm(FlaskForm):
 	comentario = TextAreaField('comentario', validators=[DataRequired()])
 	categoria1 = SelectField('categoria1', choices=category_list, validators=[DataRequired()]) 
 	categoria2 = SelectField('categoria2', choices=category_list)
-	lido = BooleanField('lido', validators=[DataRequired()])
+	lido = BooleanField('lido')
 	nota = DecimalRangeField('nota', validators=[NumberRange(min=1, max=100)])
 	file = FileField('arquivo')
