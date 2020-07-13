@@ -55,7 +55,7 @@ class Book(db.Model):
 	autor = db.Column(db.String(30), default='Desconhecido')
 	nota = db.Column(db.Float)
 	lido = db.Column(db.Boolean, default=False)
-	comment = db.Column(db.String(30), default="Aaaah, depois eu comento esse livro!")
+	comment = db.Column(db.String(100), default="Aaaah, depois eu comento esse livro!")
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
