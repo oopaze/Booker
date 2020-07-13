@@ -2,7 +2,7 @@ from app import app, db, lm
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models.table import Category, User, Book, testRelation
-from app.models.forms import LoginForm, RegisterForm
+from app.models.forms import LoginForm, RegisterForm, BookForm
 from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 
 
@@ -48,6 +48,7 @@ def perfil():
 @app.route('/books', methods=['GET', 'POST'])
 @login_required
 def books():
+	BookForm_ = BookForm()
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
 	categories = Category.query.with_entities(Category.categoria)
 
@@ -55,7 +56,8 @@ def books():
 	 						title='books', 
 	 						user=current_user, 
 	 						categorias=categories,
-	 						books=books)
+	 						books=books,
+	 						newBook=BookForm_)
 
 @app.route('/logout')
 @login_required

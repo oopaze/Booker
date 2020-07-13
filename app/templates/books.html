@@ -109,7 +109,7 @@
 				</div>
 			
 				<div class="col-md-3 buttons-conteiner">    
-				    <button type="button" class="btn Selector-Button btn-outline-danger">Deseja adicionar um livro? </button>
+				    <button type="button" class="btn Selector-Button btn-outline-danger" data-toggle="modal" data-target="#InserirBook">Deseja adicionar um livro? </button>
 				</div> 
 				
 				<div class="col-md-3 buttons-conteiner">
@@ -141,8 +141,10 @@
 							    <h5 class="card-title">Titulo</h5>
 							    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
 							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
-							    <label class="categorias btn btn-outline-danger">Categoria</label>
-							    <label class="categorias btn btn-outline-danger">Categoria</label>
+							    <div class="categorias">
+								    <label class="btn btn-outline-danger">Carta</label>
+								    <label class="btn btn-outline-danger">Ficção Cientifica</label>
+								</div>
 							    <hr style="width: 100%; clear: both;">
 						  	</div>
 						  	<div class="card-footer-control">
@@ -190,8 +192,73 @@
 					</button>
 				{% endfor %}
 				</div>
-			</div>
+				
 		</div>
+
+	</div>
+	<div class="container">
+		<div class="modal fade" id="InserirBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  	<div class="modal-dialog modal-dialog-centered" role="document">
+		    	<div class="modal-content">
+		    
+			      	<div class="modal-header">
+			        	<h3> Novo Livro </h3>
+			      	</div>
+			      
+			      	<div class="modal-body" style="padding: 10px 30px;">
+			    		<div class="row">
+				      		<div class='book-form-style'>
+							    <label class="label-formart"> Titulo </label>
+					  	      	{{ newBook.titulo(class='form-control', placeholder='Titulo do Livro')}}
+				  	      	</div>
+
+				  	      	<div class='book-form-style'>
+							    <label class="label-formart"> Autor </label>
+							    {{ newBook.autor(class='form-control', placeholder='Nome do autor') }}
+						    </div>
+						    
+						    <div class='book-form-style'>
+							    <label class="label-formart"> Comentário </label>
+					      		{{ newBook.comentario(class='form-control', placeholder='Um comentário') }}
+						    </div>
+						    
+						    <div class='book-form-style'>
+					      		<label class="label-formart"> Categoria </label>
+					      		{{ newBook.categoria1(class='form-control', placeholder='Seleciona uma categoria') }}
+						    </div>
+
+							<div class='book-form-style'>
+					      		<label class="label-formart"> Categoria </label>
+				      			{{ newBook.categoria2(class='form-control', placeholder='Seleciona uma categoria') }}
+						    </div>
+						    
+						    <div class='book-form-style'>
+					      		<label class="label-formart"> File </label>
+					      		<div class="form-control">
+							    	{{ newBook.file(id='filePut')}}
+							    </div>
+							</div class='book-form-style'>
+						    </div>
+
+						    <div class='book-form-style' style="width: 100%; text-align: center;">
+					      		{{ newBook.lido(id='lido')}}
+					      		<label id='lidoLB'>Vc leu esse livro?</label>
+						    </div>
+						</div>
+			      
+				      	<div class="modal-footer">
+				      		<button class="btn btn-dark"> Voltar </button>
+							<button class="btn btn-primary"> Confirmar </button>
+				      	</div>
+				    </div>
+				</div>
+
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+				      	
 
 
 	<footer class="bg-primary">
@@ -205,7 +272,7 @@
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		
+			<script src="{{ url_for('static', filename='js/books.js')}}"></script>
 
 	</body>
 </html>
