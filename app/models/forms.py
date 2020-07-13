@@ -12,6 +12,12 @@ from wtforms.fields.html5 import DecimalRangeField
 from wtforms.validators import DataRequired, Length, NumberRange
 
 
+def getCategories():
+	categories = Category.query.with_entities(Category)
+	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+
+	return category_list
+
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired(), Length(min=6, max=25)])
 	password = PasswordField('Password', validators=[DataRequired(), Length(min=3, max=25)])
@@ -34,10 +40,3 @@ class BookForm(FlaskForm):
 	lido = BooleanField('lido')
 	nota = DecimalRangeField('nota', validators=[NumberRange(min=1, max=100)])
 	file = FileField('arquivo')
-
-
-def getCategories():
-	categories = Category.query.with_entities(Category)
-	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
-
-	return category_list
