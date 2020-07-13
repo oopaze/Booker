@@ -26,10 +26,11 @@ class RegisterForm(FlaskForm):
 
 
 
-categories = Category.query.with_entities(Category)
-category_list = [(categoria.id, categoria.categoria) for categoria in categories]
 
 class BookForm(FlaskForm):
+	categories = Category.query.with_entities(Category)
+	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
 	comentario = TextAreaField('comentario', validators=[DataRequired()])
