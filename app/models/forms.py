@@ -12,12 +12,6 @@ from wtforms.fields.html5 import DecimalRangeField
 from wtforms.validators import DataRequired, Length, NumberRange
 
 
-def getCategories():
-	categories = Category.query.with_entities(Category)
-	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
-
-	return category_list
-
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired(), Length(min=6, max=25)])
 	password = PasswordField('Password', validators=[DataRequired(), Length(min=3, max=25)])
@@ -30,13 +24,17 @@ class RegisterForm(FlaskForm):
 	password = PasswordField('passw', validators=[DataRequired(), Length(min=2, max=25)])
 	terms = BooleanField('terms', validators=[DataRequired()])
 
+"""
+categories = Category.query.with_entities(Category)
+category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+"""
 
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
 	comentario = TextAreaField('comentario', validators=[DataRequired()])
-	categoria1 = SelectField('categoria1', choices=getCategories(), validators=[DataRequired()]) 
-	categoria2 = SelectField('categoria2', choices=getCategories())
+	categoria1 = SelectField('categoria1', choices=category_list, validators=[DataRequired()]) 
+	categoria2 = SelectField('categoria2', choices=category_list)
 	lido = BooleanField('lido')
 	nota = DecimalRangeField('nota', validators=[NumberRange(min=1, max=100)])
 	file = FileField('arquivo')
