@@ -210,6 +210,7 @@
 			      
 			      	<div class="modal-body" style="padding: 10px 30px;">
 			    		<div class="row">
+			    			<form action="" method="POST" id='form-book'>
 				      		<div class='book-form-style'>
 							    <label class="label-formart"> Titulo </label>
 					  	      	{{ newBook.titulo(class='form-control', placeholder='Titulo do Livro')}}
@@ -221,11 +222,6 @@
 						    </div>
 						    
 						    <div class='book-form-style'>
-							    <label class="label-formart"> Comentário </label>
-					      		{{ newBook.comentario(class='form-control', placeholder='Um comentário') }}
-						    </div>
-						    
-						    <div class='book-form-style'>
 					      		<label class="label-formart"> Categoria </label>
 					      		{{ newBook.categoria1(class='form-control', placeholder='Seleciona uma categoria') }}
 						    </div>
@@ -233,6 +229,11 @@
 							<div class='book-form-style'>
 					      		<label class="label-formart"> Categoria </label>
 				      			{{ newBook.categoria2(class='form-control', placeholder='Seleciona uma categoria') }}
+						    </div>
+						    
+						    <div class='book-form-style'>
+							    <label class="label-formart comentario-format"> Comentário </label>
+					      		{{ newBook.comentario(class='form-control text-control', placeholder='Adicione um comentário sobre o livro') }}
 						    </div>
 						    
 						    <div class='book-form-style'>
@@ -250,8 +251,9 @@
 						</div>
 			      
 				      	<div class="modal-footer">
-				      		<button class="btn btn-dark" data-dismiss="modal"> Voltar </button>
-							<button class="btn btn-primary"> Confirmar </button>
+				      		<button class="btn btn-dark" type="button" data-dismiss="modal"> Voltar </button>
+							<button class="btn btn-primary" type="submit"> Confirmar </button>
+							</form>
 				      	</div>
 				    </div>
 				</div>

@@ -30,9 +30,29 @@ body {
 
 
 .book-form-style .label-formart{
-	max-width: 10%;
+	max-width: 20%;
+	min-height: 50px;
 	padding-top: 9px;
 	text-align: center;
+}
+
+.text-control {
+	height: 100px;
+}
+
+.comentario-format {
+	height: 100px;
+}
+
+.form-control{
+	max-width: 65%;
+	min-height: 45px !important;
+	padding: 10px;
+	float: right;
+}
+
+#form-book{
+	width: 100%;
 }
 
 #filePut{
@@ -41,12 +61,6 @@ body {
 
 #lidoLB{
 	min-width: 130px !important;
-}
-
-.form-control{
-	max-width: 70%;
-	padding: 10px;
-	float: right;
 }
 
 .card-dados p {

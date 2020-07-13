@@ -1,7 +1,11 @@
+from app import db
+from app.models.table import Category
+
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField,
 					 BooleanField, SubmitField,
-					 IntegerField, FileField)
+					 IntegerField, FileField,
+					 SelectField, TextAreaField)
 
 from wtforms.fields.html5 import DecimalRangeField
 
@@ -21,12 +25,16 @@ class RegisterForm(FlaskForm):
 	terms = BooleanField('terms', validators=[DataRequired()])
 
 
+
+categories = Category.query.with_entities(Category)
+category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
-	comentario = StringField('comentario', validators=[DataRequired()])
-	categoria1 = StringField('categoria1', validators=[DataRequired()]) 
-	categoria2 = StringField('categoria2')
+	comentario = TextAreaField('comentario', validators=[DataRequired()])
+	categoria1 = SelectField('categoria1', choices=category_list, validators=[DataRequired()]) 
+	categoria2 = SelectField('categoria2', choices=category_list)
 	lido = BooleanField('lido', validators=[DataRequired()])
 	nota = DecimalRangeField('nota', validators=[NumberRange(min=1, max=100)])
 	file = FileField('arquivo')

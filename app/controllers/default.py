@@ -48,9 +48,11 @@ def perfil():
 @app.route('/books', methods=['GET', 'POST'])
 @login_required
 def books():
-	BookForm_ = BookForm()
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
 	categories = Category.query.with_entities(Category.categoria)
+
+	category_list = [(book.id, book.categoria) for book in books]
+	BookForm_ = BookForm()
 
 	return render_template('books.html',
 	 						title='books', 
