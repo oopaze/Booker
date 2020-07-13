@@ -25,17 +25,19 @@ class RegisterForm(FlaskForm):
 	terms = BooleanField('terms', validators=[DataRequired()])
 
 
-
-
 class BookForm(FlaskForm):
-	categories = Category.query.with_entities(Category)
-	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
-
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
 	comentario = TextAreaField('comentario', validators=[DataRequired()])
-	categoria1 = SelectField('categoria1', choices=category_list, validators=[DataRequired()]) 
-	categoria2 = SelectField('categoria2', choices=category_list)
+	categoria1 = SelectField('categoria1', choices=getCategories, validators=[DataRequired()]) 
+	categoria2 = SelectField('categoria2', choices=getCategories)
 	lido = BooleanField('lido')
 	nota = DecimalRangeField('nota', validators=[NumberRange(min=1, max=100)])
 	file = FileField('arquivo')
+
+
+def getCategories():
+	categories = Category.query.with_entities(Category)
+	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+
+	return category_list
