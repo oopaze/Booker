@@ -50,7 +50,7 @@ class Book(db.Model):
 	__tablename__ = 'books'
 
 	id = db.Column(db.Integer, primary_key=True)
-	titulo = db.Column(db.String(50), nullable=False)
+	titulo = db.Column(db.String(100), nullable=False)
 	#image = db.Column(db.LargeBinary)
 	autor = db.Column(db.String(30), default='Desconhecido')
 	nota = db.Column(db.Float)
