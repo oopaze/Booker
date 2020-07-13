@@ -37,10 +37,10 @@
 						<div class="col-md-4 offset-md-4">
 						  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						    	
-							    <a class="text-light menu-item" href="#">Perfil</a>
-							    <a class="text-light menu-item" href="#">Livros</a>
-							    <a class="text-light menu-item" href="#"> Sobre </a>
-							    <a href="{{ url_for('logout') }}" class="text-light menu-item" href="#">Sair</a>
+							    <a class="menu-item" href="#">Perfil</a>
+							    <a class="menu-item" href="#">Livros</a>
+							    <a class="menu-item" data-toggle="modal" data-target="#sobreModal"> Sobre </a>
+							    <a class="menu-item" data-toggle="modal" data-target="#sairModal">Sair</a>
 							    
 						  	</div>
 						</div>
@@ -48,6 +48,55 @@
 				</div>
 			</header>
 		</div>
+
+
+
+		<div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle"> Sobre nós </h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p class="lead text-justify">  
+		        	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et varius justo, a feugiat magna. Suspendisse pharetra luctus lacus, ut aliquam lacus bibendum nec. Ut in felis mauris. Pellentesque sollicitudin eros quam, ut laoreet leo convallis eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut quis iaculis augue, eleifend convallis magna. Aliquam commodo molestie dignissim. Donec quis elementum ipsum. Donec dapibus massa vitae ligula ultrices pharetra. Sed porttitor posuere ultricies. Cras eget rhoncus elit, quis aliquet tortor. Praesent vel sapien arcu. Proin laoreet nisl sed sapien pharetra scelerisque ac eu eros. Nam sollicitudin fringilla ligula, fermentum sollicitudin felis scelerisque quis. Donec auctor nulla id neque lobortis, sit amet vulputate orci commodo.
+
+					Donec at lectus quis odio hendrerit gravida. Quisque eget tellus vitae dui fermentum venenatis. Fusce egestas, orci non sollicitudin mattis, neque erat ullamcorper ligula, ut aliquam lectus urna ut leo. Suspendisse dictum arcu justo, sit amet lobortis turpis fermentum sed. Aliquam erat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sapien ante, tempus et mi sed, auctor vestibulum ex. Donec in auctor felis, ut ultrices felis. Proin pulvinar justo eu justo tempus mattis. Nulla a elit mattis, convallis arcu nec, sollicitudin leo. Ut hendrerit justo quis facilisis hendrerit. Mauris pellentesque lorem sed ultricies cursus.
+  
+				</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+		        <a type="button" href="" class="btn btn-primary">Doe um Café</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="modal fade" id="sairModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title lead" id="exampleModalLongTitle">Logout</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p> Tem certeza que deseja fazer sair?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+		        <a type="button" href="{{ url_for('logout') }}" class="btn btn-primary">Sair</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
 
 
 		<div class="container-fluid" id='centerPage'>
@@ -84,21 +133,22 @@
 	
 				</div> 
 			</div>		
-			<div class="row book-space">
-				
+			<div class="row book-space">				
 				<div class="col-md-3 card-align-control">
 					<button class="card card-size-control align-center" style="width: 18rem;">
 						<div class="card-color">
 						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 						  	<div class="card-body">
-							    <h5 class="card-title">Book title</h5>
-							    <h6 class="card-subtitle mb-2 text-muted">Book Author</h6>
+							    <h5 class="card-title">Titulo</h5>
+							    <h6 class="card-subtitle mb-2 text-muted">Autor</h6>
 							    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
-							    <hr>
+							    <label class="categorias btn btn-outline-danger">Categoria</label>
+							    <label class="categorias btn btn-outline-danger">Categoria</label>
+							    <hr style="width: 100%; clear: both;">
 						  	</div>
 						  	<div class="card-footer-control">
-						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
-						  		<a class="btn btn-outline-primary"> Editar Livro </a>
+						  		<a class="card-button btn btn-danger"> Dar uma nota </a>
+						  		<a class="btn btn-danger"> Editar Livro </a>
 						  	</div>
 					  	</div>
 					</button>
@@ -109,27 +159,38 @@
 				
 				<div class="col-md-3 card-align-control">
 					{% if book.lido %}
-					<button class="card bg-success card-size-control">
+						<button class="card card-size-control align-center bg-success" style="width: 18rem;">
 					{% else %}
-					<button class="card bg-danger card-size-control">
-					{% endif %}
-						<div class="card-color">
+						<button class="card card-size-control align-center bg-danger" style="width: 18rem;">
+					{% endif %}	
+						<div class="card-color">    
 						    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 						  	<div class="card-body">
 							    <h5 class="card-title">{{ book.titulo }}</h5>
 							    <h6 class="card-subtitle mb-2 text-muted">{{ book.autor }}</h6>
 							    <p class="card-text"> {{book.comment}} </p>
-							 	<hr>
+							 	{% if book.lido %}
+									<label class="categorias btn btn-outline-success">Categoria</label>
+								    <label class="categorias btn btn-outline-success">Categoria</label>
+								{% else %}
+									<label class="categorias btn btn-outline-danger">Categoria</label>
+								    <label class="categorias btn btn-outline-danger">Categoria</label>
+								{% endif %}
+							 	<hr style="width: 100%; clear: both;">
 						  	</div>
 						  	<div class="card-footer-control">
-						  		<a class="btn btn-outline-primary"> Dar uma nota </a>
-						  		<a class="btn btn-outline-primary"> Editar Livro </a>
+						  		{% if book.lido %}
+						  			<a class="btn btn-success"> Dar uma nota </a>
+							  		<a class="btn btn-success"> Editar Livro </a>
+								{% else %}
+							  		<a class="btn btn-danger"> Dar uma nota </a>
+							  		<a class="btn btn-danger"> Editar Livro </a>
+								{% endif %}
 						  	</div>
 					  	</div>
 					</button>
-				</div>
-
 				{% endfor %}
+				</div>
 			</div>
 		</div>
 

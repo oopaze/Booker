@@ -21,6 +21,7 @@ class ProductionConfig(Config):
 	DEBUG = False
 
 class DevelopmentConfig(Config):
+	
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	sqlite = 'sqlite:///' + os.path.join(basedir, 'storage.db')
 
