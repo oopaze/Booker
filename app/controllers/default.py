@@ -10,6 +10,8 @@ from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
 def index():
+	db.session.add(Category('Documentário'))
+	db.session.commit()
 	Loginform_= LoginForm()
 	RegisterForm_ = RegisterForm()
 
