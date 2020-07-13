@@ -28,7 +28,7 @@ class RegisterForm(FlaskForm):
 categories = Category.query.with_entities(Category)
 category_list = [(categoria.id, categoria.categoria) for categoria in categories]
 """
-
+category_list = [(0, 'None')]
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
