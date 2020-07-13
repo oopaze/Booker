@@ -135,6 +135,7 @@ body {
 
 
 .card-color{
+	width: 99%;
 	background-color: white;
 	height: 523px;
 }
@@ -166,6 +167,8 @@ body {
 
 .card-footer-control a{
 	margin-top: -35px;
+	color: white;
+	text-shadow: 1px 1px 1px #111111;
 }
 
 .card img {
