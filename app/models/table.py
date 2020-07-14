@@ -39,6 +39,17 @@ class User(db.Model):
 	def __repr__(self):
 		return f'<User {self.name}>'
 
+	def serialize(self):
+		json = {
+			'id' : self.id,
+			'username' : self.username,
+			'password' : self.password,
+			'name' : self.name,
+			'email' : self.email
+		}
+		return json
+
+
 Book_category = db.Table(
 	'book_category',
 	db.Column('book_id', db.Integer, db.ForeignKey('books.id')),

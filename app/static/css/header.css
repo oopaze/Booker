@@ -11,6 +11,13 @@ header nav {
 	height: 110px;
 }
 
+.isDisabled {
+  	color: currentColor;
+  	cursor: not-allowed;
+  	opacity: 0.5;
+  	text-decoration: none;
+}
+
 #navbarNavDropdown{
 	width: 100%;
 }

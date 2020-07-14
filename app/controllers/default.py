@@ -1,11 +1,11 @@
+from datetime import timedelta
 from app import app, db, lm
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models.table import Category, User, Book, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
-from app.controllers.crud import readUser, createUser, updateUser, deleteUser
 
-
+app.permanent_session_lifetime = timedelta(days=3)
 
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
@@ -16,14 +16,19 @@ def index():
 	RegisterForm_.data['password'] = ''
 	Loginform_.data['password'] = ''
 
-	return render_template('index.html', title='home',
-	 						lform=Loginform_, rform=RegisterForm_,)
+	if 'user' in session:
+		return redirect(url_for('books'))
+
+	return render_template('index.html', 
+							title='home',
+	 						lform=Loginform_,
+	 						rform=RegisterForm_,)
 
 
-@app.route('/perfil', methods=['GET', 'POST'])
+@app.route('/perfil/<username>', methods=['GET', 'POST'])
 @login_required
-def perfil():
-	return redirect(url_for('index'))
+def perfil(username=None):
+	return render_template('perfil.html', title=current_user.username)
 
 @app.route('/books', methods=['GET', 'POST'])
 def books():
@@ -33,7 +38,7 @@ def books():
 	BookForm_ = BookForm()
 
 	return render_template('books.html',
-	 						title='books', 
+	 						title='Livros', 
 	 						user=current_user, 
 	 						categorias=categories,
 	 						books=books,
@@ -41,12 +46,14 @@ def books():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
 	form = request.form
 	user = User.query.filter_by(username=form['username'].lower()).first()
 	
 	if user: 
 		if user.password == form['password']:
 			login_user(user)
+			session['user'] = user.serialize()
 			return redirect(url_for('books'))
 
 		else:
@@ -98,6 +105,7 @@ def newBook():
 @app.route('/logout')
 @login_required
 def logout():
+	session.pop('user', None)
 	logout_user()
 	return redirect(url_for('index'))
 

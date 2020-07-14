@@ -1,9 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> Booker - {{ title }} </title>
-</head>
-<body>
+	<head>
 
-</body>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name='viewport' content="width=device-width, initial-scale=1">
+
+		<title> Booker - {{ title }} </title>
+		<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css')}}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
+		
+	</head>
+	
+	<body>
+		<header>
+			<div class="container-fluid">
+			  	<div class="row">
+					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			  			<div class="col-md-4">
+					  		<div id='logo-menu'>	
+								<a id='logo' href="{{url_for('books')}}">
+									<h2 class="display-4"> Booker </h2>
+								</a>
+							</div>
+							<div id='button-menu'>
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+								    <span class="navbar-toggler-icon"></span>
+								</button>
+							</div>
+						</div>
+						<div class="col-md-4 offset-md-4">
+						  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						    	
+							    <a class="menu-item isDisabled" href="{{ url_for('perfil', username=current_user.username) }}">Perfil</a>
+							    <a class="menu-item" href="{{ url_for('books') }}">Livros</a>
+							    <a class="menu-item" data-toggle="modal" data-target="#sobreModal"> Sobre </a>
+							    <a class="menu-item" data-toggle="modal" data-target="#sairModal">Sair</a>
+							    
+						  	</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<div id='centerpage'>
+			
+
+		</div>
+
+
+		<footer class="bg-primary">
+		    <div class="footer-p">
+		    	<p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
+		    </div>
+		</footer>
+
+	</body>
+
 </html>
