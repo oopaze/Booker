@@ -52,7 +52,7 @@
 			<div class="col-md-5 offset-md-1">
 				<div class="textConteiner">
 					<div id='formLogin'>
-						<form action=""  method="POST">
+						<form action="/login"  method="POST">
 							
 							{{ lform.csrf_token }}
 							<h2 class=""> Login </h2>
@@ -121,7 +121,7 @@
 			        
 				        <div class="modal-body">
 							<div class="modelStyle">
-								<form action=""  method="POST">				        	
+								<form action="/newUser"  method="POST">				        	
 						        	{{ rform.csrf_token }}
 						        	<div class="form-group">
 						        		<label> Username </label>
