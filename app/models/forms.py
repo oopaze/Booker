@@ -25,8 +25,11 @@ class RegisterForm(FlaskForm):
 	terms = BooleanField('terms', validators=[DataRequired()])
 
 categories = Category.query.with_entities(Category)
-category_list = [(categoria.id, categoria.categoria) for categoria in categories]
-
+if categories:
+	category_list = [(categoria.id, categoria.categoria) for categoria in categories]
+else:
+	category_list = [(1, None)]
+	
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
