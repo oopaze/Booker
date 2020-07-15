@@ -10,7 +10,6 @@ class Config(object):
 	DATABASE_URI = sqlite
 	
 	DEBUG = False
-	TESTING = False
 
 class ProductionConfig(Config):
 	
