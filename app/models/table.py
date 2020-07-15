@@ -121,10 +121,9 @@ class BookFile(db.Model):
 	def __init__(self, file):
 		self.file = file
 
+db.create_all()
+
 def testRelation():
-	
-	db.drop_all()
-	db.create_all()
 
 	categorias = 'Documentário,Romance,Drama,Conto,Crônica,Poesia,Carta,Ficção,Aventura,Memórias,Biografia,Clássico,História em Quadrinhos (HQ),Literatura fantástica,Ficção científica,Fantasia,Sobrenatural,Realismo Mágico'
 	for x in categorias.split(','):
