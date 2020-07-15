@@ -100,8 +100,8 @@
 							    <hr style="width: 100%; clear: both;">
 						  	</div>
 						  	<div class="card-footer-control">
-						  		<a class="card-button btn btn-danger"> Dar uma nota </a>
-						  		<a class="btn btn-danger"> Editar Livro </a>
+						  		<a class="card-button btn btn-danger"> Excluir </a>
+						  		<a class="card-button btn btn-danger"> Editar </a>
 						  	</div>
 					  	</div>
 					</button>
@@ -136,11 +136,11 @@
 							  	</div>
 							  	<div class="card-footer-control">
 							  		{% if book.lido %}
-							  			<a class="btn btn-success"> Dar uma nota </a>
-								  		<a class="btn btn-success"> Editar Livro </a>
+							  			<a class="card-button btn btn-success" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
+								  		<a class="card-button btn btn-success"> Editar </a>
 									{% else %}
-								  		<a class="btn btn-danger"> Dar uma nota </a>
-								  		<a class="btn btn-danger"> Editar Livro </a>
+								  		<a class="card-button btn btn-danger" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
+								  		<a class="card-button btn btn-danger"> Editar </a>
 									{% endif %}
 							  	</div>
 						  	</div>

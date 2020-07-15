@@ -8,18 +8,17 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key='True')
 	username = db.Column(db.String(20), unique=True)
 	password = db.Column(db.String(30))
-	#image = db.Column(db.LargeBinary, nullable=True)
 	name = db.Column(db.String(30))
 	email = db.Column(db.String(30))
 
+	image = db.relationship('UserImage', backref='users')
 	books = db.relationship('Book', backref='users')
 	
-	def __init__(self, username, password, name, email, image=None):
+	def __init__(self, username, password, name, email):
 		self.username = username
 		self.password = password
 		self.name = name
 		self.email = email
-		self.image = image
 
 	@property
 	def is_authenticated(self):
@@ -81,10 +80,12 @@ class Book(db.Model):
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+	file = db.relationship('BookFile', backref='Book')
 	categories = db.relationship(Category, 
 							secondary=Book_category, 
 							backref=db.backref('books', 
 												lazy='dynamic'))
+
 
 	def __init__(self, titulo, autor, comment=None, lido=None, nota=None):
 
@@ -100,6 +101,25 @@ class Book(db.Model):
 	def __repr__(self):
 		return f'<Book {self.titulo}>'
 
+class UserImage(db.Model):
+	__tablename__ = 'userimage'
+	id = db.Column(db.Integer, primary_key=True)
+	image = db.Column(db.LargeBinary)
+
+	user = db.Column(db.Integer, db.ForeignKey('users.id'))		
+	
+	def __init__(self, image):
+		self.image = image
+
+class BookFile(db.Model):
+	__tablename__ = 'bookfile'
+	id = db.Column(db.Integer, primary_key=True)
+	file = db.Column(db.LargeBinary)
+
+	book = db.Column(db.Integer, db.ForeignKey('books.id'))		
+	
+	def __init__(self, file):
+		self.file = file
 
 def testRelation():
 	
@@ -145,9 +165,3 @@ def testRelation():
 	u.books.append(b)
 	
 	db.session.commit()
-
-
-
-
-
-

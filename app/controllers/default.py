@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from app.models.table import Category, User, Book, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 
-app.permanent_session_lifetime = timedelta(days=3)
+app.permanent_session_lifetime = timedelta(days=2)
 
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
@@ -72,30 +72,47 @@ def newUser():
 
 	return redirect(url_for('index'))
 
+@app.route('/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def deleteBook(id=None):
+
+	book = Book.query.filter_by(id=id).first()
+	book.categories = []
+	book.bookfile = []
+
+	db.session.delete(book)
+	db.session.commit() 
+
+	return redirect(url_for('books'))
 
 @app.route('/newBook', methods=['GET', 'POST'])
 @login_required
 def newBook():
 	user = current_user
-
 	form = request.form
 	
 	lido = True if 'lido' in dict(form).keys() else False
+
 
 	book = Book(titulo=form['titulo'],
 				autor=form['autor'],
 				comment=form['comentario'],
 				lido=lido)
-
-	categoria = Category.query.get(int(form['categoria1']))
-	categoria2 = Category.query.get(int(form['categoria2']))
-
+	
 	db.session.add(book)
 	
-	book.categories.append(categoria)
-	book.categories.append(categoria2)
+	if int(form['categoria2']) != int(form['categoria1']):
+		categoria = Category.query.get(int(form['categoria1']))
+		categoria2 = Category.query.get(int(form['categoria2']))
+		book.categories.append(categoria)
+		book.categories.append(categoria2)
+
+	else:
+		categoria = Category.query.get(int(form['categoria1']))
+		book.categories.append(categoria)
 
 	current_user.books.append(book)
+
 	db.session.commit()
 
 
