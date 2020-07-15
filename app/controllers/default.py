@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from app.models.table import Category, User, Book, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 
-app.permanent_session_lifetime = timedelta(days=2)
+app.permanent_session_lifetime = timedelta(mintes=1)
 
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
