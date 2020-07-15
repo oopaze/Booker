@@ -122,6 +122,9 @@ class BookFile(db.Model):
 		self.file = file
 
 def testRelation():
+	
+	db.drop_all()
+	db.create_all()
 
 	categorias = 'Documentário,Romance,Drama,Conto,Crônica,Poesia,Carta,Ficção,Aventura,Memórias,Biografia,Clássico,História em Quadrinhos (HQ),Literatura fantástica,Ficção científica,Fantasia,Sobrenatural,Realismo Mágico'
 	for x in categorias.split(','):
@@ -163,4 +166,5 @@ def testRelation():
 	
 	db.session.commit()
 
+testRelation()
 

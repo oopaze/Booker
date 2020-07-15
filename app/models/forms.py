@@ -24,11 +24,8 @@ class RegisterForm(FlaskForm):
 	password = PasswordField('passw', validators=[DataRequired(), Length(min=2, max=25)])
 	terms = BooleanField('terms', validators=[DataRequired()])
 
-"""
 categories = Category.query.with_entities(Category)
 category_list = [(categoria.id, categoria.categoria) for categoria in categories]
-"""
-category_list = [(1, None)]
 
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
