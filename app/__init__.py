@@ -19,6 +19,9 @@ manager.add_command('db', MigrateCommand)
 lm = LoginManager()
 lm.init_app(app)
 
+from app.models import table	
+from app.controllers import default
+
 @click.command(name='create')
 @with_appcontext
 def create():
@@ -26,9 +29,6 @@ def create():
 	db.create_all()
 
 app.cli.add_command(create)
-
-from app.models import table	
-from app.controllers import default
 
 
 
