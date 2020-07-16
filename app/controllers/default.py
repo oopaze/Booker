@@ -36,13 +36,15 @@ def books():
 	categories = Category.query.with_entities(Category.categoria)
 
 	BookForm_ = BookForm()
+	updateBookForm_ = BookForm()
 
 	return render_template('books.html',
 	 						title='Livros', 
 	 						user=current_user, 
 	 						categorias=categories,
 	 						books=books,
-	 						newBook=BookForm_)
+	 						newBook=BookForm_,
+	 						updatebook=updateBookForm_)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -72,18 +74,6 @@ def newUser():
 
 	return redirect(url_for('index'))
 
-@app.route('/delete/<id>', methods=['GET', 'POST'])
-@login_required
-def deleteBook(id=None):
-
-	book = Book.query.filter_by(id=id).first()
-	book.categories = []
-	book.bookfile = []
-
-	db.session.delete(book)
-	db.session.commit() 
-
-	return redirect(url_for('books'))
 
 @app.route('/newBook', methods=['GET', 'POST'])
 @login_required
@@ -107,7 +97,7 @@ def newBook():
 		book.categories.append(categoria)
 		book.categories.append(categoria2)
 
-	else:
+	else:	
 		categoria = Category.query.get(int(form['categoria1']))
 		book.categories.append(categoria)
 
@@ -118,6 +108,35 @@ def newBook():
 
 	return redirect(url_for('books'))
 
+@app.route('/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def deleteBook(id=None):
+
+	book = Book.query.filter_by(id=id).first()
+	book.categories = []
+	book.bookfile = []
+
+	db.session.delete(book)
+	db.session.commit() 
+
+	return redirect(url_for('books'))
+
+@app.route('/update/<id>', methods=['GET', 'POST'])
+def updatebook(id=None):
+	form = request.form
+
+	lido = True if 'lido' in form else False 
+
+	book = Book.query.get(id)
+
+	book.lido = lido
+	book.titulo = form['titulo']
+	book.autor = form['autor']
+	book.comment = form['comentario']
+	
+	db.session.commit()
+
+	return redirect(url_for('books'))
 
 @app.route('/logout')
 @login_required

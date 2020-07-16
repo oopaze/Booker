@@ -178,4 +178,10 @@ body {
 	max-width: 200px; 
 }
 
+.input-textarea{
+	border: 1px solid #ccc;
+  	overflow: auto;
+  	word-break: break-word;
+}
+
 

@@ -137,16 +137,68 @@
 							  	<div class="card-footer-control">
 							  		{% if book.lido %}
 							  			<a class="card-button btn btn-success" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
-								  		<a class="card-button btn btn-success"> Editar </a>
+								  		<a class="card-button btn btn-success" data-toggle="modal" data-target="#{{book.titulo}}"> Editar </a>
 									{% else %}
 								  		<a class="card-button btn btn-danger" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
-								  		<a class="card-button btn btn-danger"> Editar </a>
+								  		<a class="card-button btn btn-danger" data-toggle="modal" data-target="#{{book.titulo}}"> Editar </a>
 									{% endif %}
 							  	</div>
 						  	</div>
 							</button>
 							</button>
 					</div>
+
+					<div class="modal fade" id="{{ book.titulo }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  	<div class="modal-dialog modal-dialog-centered" role="document">
+					    	<div class="modal-content">
+					    
+						      	<div class="modal-header">
+						        	<h3> Editar Livro </h3>
+						        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          	<span aria-hidden="true">&times;</span>
+							        </button>
+						      	</div>
+						      
+						      	<div class="modal-body" style="padding: 10px 30px;">
+						    		<form action="{{url_for('updatebook', id=book.id)}}" method="POST" id='form-book'>
+							      		<div class='book-form-style'>
+										    <label class="label-formart"> Titulo </label>
+								  	      	{{ updatebook.titulo(value=book.titulo, class='form-control', placeholder='Titulo do Livro')}}
+							  	      	</div>
+
+							  	      	<div class='book-form-style'>
+										    <label class="label-formart"> Autor </label>
+										    {{ updatebook.autor(value=book.autor, class='form-control', placeholder='Nome do autor') }}
+									    </div>
+									    
+									    <div class='book-form-style'>
+										    <label class="label-formart comentario-format"> Comentário </label>
+										    {{ newBook.comentario(id=book.id, class='form-control text-control', placeholder='Adicione um comentário sobre o livro') }}
+										    <script> var textarea = document.getElementById('{{book.id}}'); textarea.innerHTML = "{{ book.comment }}" </script>
+									    </div>
+									    
+									    <div class='book-form-style'>
+								      		<label class="label-formart"> File </label>
+								      		<div class="form-control">
+										    	{{ updatebook.file(id='filePut')}}
+										    </div>
+										</div class='book-form-style'>
+
+									    <div class='book-form-style' style="width: 100%; text-align: center;">
+								      		{{ updatebook.lido(id='lido')}}
+								      		<label id='lidoLB'>Vc leu esse livro?</label>
+									    </div>
+						      
+							      	<div class="modal-footer">
+							      		<button class="btn btn-dark" type="button" data-dismiss="modal"> Voltar </button>
+										<button class="btn btn-primary" type="submit"> Salvar </button>
+							      	</div>				      	
+									</form>
+							    </div>
+							</div>
+						</div>
+					</div>
+
 				{% endfor %}
 			</div>
 		</div>
