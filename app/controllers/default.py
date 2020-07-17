@@ -136,7 +136,12 @@ def updatebook(id=None):
 	book.autor = form['autor']
 	book.comment = form['comentario']
 	book.lido = lido
-	book.categories = [categoria1, categoria2]
+
+	if categoria1 == categoria2:
+		book.categories = [categoria1]	
+	else:
+		book.categories = [categoria1, categoria2]
+	
 	db.session.commit()
 
 	return redirect(url_for('books'))
