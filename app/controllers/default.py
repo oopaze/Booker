@@ -33,7 +33,15 @@ def perfil(username=None):
 @app.route('/books', methods=['GET', 'POST'])
 def books():
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
-	categories = Category.query.with_entities(Category.categoria)
+	categories = []
+
+
+	categories.append(Category("Todos"))
+
+	for book in books:
+		for category in book.categories:
+			if category not in categories:
+				categories.append(category)
 
 	BookForm_ = BookForm()
 	updateBookForm_ = BookForm()
@@ -141,7 +149,6 @@ def updatebook(id=None):
 		book.categories = [categoria1]	
 	else:
 		book.categories = [categoria1, categoria2]
-	
 	db.session.commit()
 
 	return redirect(url_for('books'))
