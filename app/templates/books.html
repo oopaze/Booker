@@ -137,10 +137,10 @@
 							  	<div class="card-footer-control">
 							  		{% if book.lido %}
 							  			<a class="card-button btn btn-success" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
-								  		<a class="card-button btn btn-success" data-toggle="modal" data-target="#{{book.titulo}}"> Editar </a>
+								  		<a class="card-button btn btn-success" data-toggle="modal" data-target="#edit{{book.id}}"> Editar </a>
 									{% else %}
 								  		<a class="card-button btn btn-danger" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
-								  		<a class="card-button btn btn-danger" data-toggle="modal" data-target="#{{book.titulo}}"> Editar </a>
+								  		<a class="card-button btn btn-danger" data-toggle="modal" data-target="#edit{{book.id}}"> Editar </a>
 									{% endif %}
 							  	</div>
 						  	</div>
@@ -148,7 +148,7 @@
 							</button>
 					</div>
 
-					<div class="modal fade" id="{{ book.titulo }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal fade" id="edit{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 					  	<div class="modal-dialog modal-dialog-centered" role="document">
 					    	<div class="modal-content">
 					    
@@ -173,8 +173,19 @@
 									    
 									    <div class='book-form-style'>
 										    <label class="label-formart comentario-format"> Comentário </label>
-										    {{ newBook.comentario(id=book.id, class='form-control text-control', placeholder='Adicione um comentário sobre o livro') }}
+										    {{ updatebook.comentario(id=book.id, class='form-control text-control', placeholder='Adicione um comentário sobre o livro') }}
 										    <script> var textarea = document.getElementById('{{book.id}}'); textarea.innerHTML = "{{ book.comment }}" </script>
+									    </div>
+
+									    <div class='book-form-style'>
+								      		<label class="label-formart"> Categoria </label>
+								      		{{ updatebook.categoria1(class='form-control', placeholder='Seleciona uma categoria') }}
+									    </div>
+
+										<div class='book-form-style'>
+								      		<label class="label-formart"> Categoria </label>
+
+							      			{{ updatebook.categoria2(class='form-control', placeholder='Seleciona uma categoria') }}
 									    </div>
 									    
 									    <div class='book-form-style'>

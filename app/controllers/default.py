@@ -129,11 +129,14 @@ def updatebook(id=None):
 
 	book = Book.query.get(id)
 
-	book.lido = lido
+	categoria1 = Category.query.get(form['categoria1'])
+	categoria2 = Category.query.get(form['categoria2'])
+	
 	book.titulo = form['titulo']
 	book.autor = form['autor']
 	book.comment = form['comentario']
-	
+	book.lido = lido
+	book.categories = [categoria1, categoria2]
 	db.session.commit()
 
 	return redirect(url_for('books'))
