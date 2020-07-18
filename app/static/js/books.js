@@ -15,3 +15,9 @@ function showmessage(){
 	p_mensagem.innerHTML = "" + frases[frase];
 };
 
+function myFunction(id) {
+	var r = confirm("Realmente deseja Excluir esse livro?");
+	if (r == true) {
+		window.location.href = "/delete/"+id;
+	}
+}

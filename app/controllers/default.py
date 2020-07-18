@@ -2,7 +2,7 @@ from datetime import timedelta
 from app import app, db, lm
 from flask import render_template, flash, redirect, url_for, request, session
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models.table import Category, User, Book, Book_category, testRelation
+from app.models.table import Category, User, UserImage, Book, BookFile, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 
 #app.permanent_session_lifetime = timedelta(days=2)
@@ -35,13 +35,16 @@ def books():
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
 	categories = []
 
-
 	categories.append(Category("Todos"))
+	files = []
 
 	for book in books:
 		for category in book.categories:
 			if category not in categories:
 				categories.append(category)
+
+			loadbook(book.file[0].file, book.id)
+
 
 	BookForm_ = BookForm()
 	updateBookForm_ = BookForm()
@@ -96,8 +99,15 @@ def newBook():
 				autor=form['autor'],
 				comment=form['comentario'],
 				lido=lido)
+
+	if 'file' in request.files:
+		book.file = []
+		file = request.files['file']
+		fileB = file.read()
+		bookfile = BookFile(fileB)
+		book.file.append(bookfile)
+		
 	
-	db.session.add(book)
 	
 	if int(form['categoria2']) != int(form['categoria1']):
 		categoria = Category.query.get(int(form['categoria1']))
@@ -109,8 +119,10 @@ def newBook():
 		categoria = Category.query.get(int(form['categoria1']))
 		book.categories.append(categoria)
 
-	current_user.books.append(book)
+	db.session.add(book)
 
+	current_user.books.append(book)
+	
 	db.session.commit()
 
 
@@ -145,6 +157,14 @@ def updatebook(id=None):
 	book.comment = form['comentario']
 	book.lido = lido
 
+	if 'file' in request.files:
+		book.file = []
+		file = request.files['file']
+		fileB = file.read()
+		bookfile = BookFile(fileB)
+		book.file.append(bookfile)
+		
+
 	if categoria1 == categoria2:
 		book.categories = [categoria1]	
 	else:
@@ -169,8 +189,13 @@ def load_user(user_id):
     
     return User.query.filter_by(id=user_id).first()
 
+def loadbook(file, id):
+	book = open(f'app/static/files/book{id}.pdf', 'w')
+	book.close()
 
-
+	book = open(f'app/static/files/book{id}.pdf', 'wb')
+	book.write(file)
+	book.close()
 
 
 
