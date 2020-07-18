@@ -191,12 +191,13 @@ def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
 def loadbook(file, id):
-	book = open(f'app/static/files/book-{id}-{current_user.id}.pdf', 'w')
+	book = open(f'app/static/files/book{id}.pdf', 'w')
 	book.close()
 
 	book = open(f'app/static/files/book{id}.pdf', 'wb')
 	book.write(file)
 	book.close()
+
 
 
 
