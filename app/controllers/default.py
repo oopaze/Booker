@@ -1,3 +1,4 @@
+from os import listdir, remove
 from datetime import timedelta
 from app import app, db, lm
 from flask import render_template, flash, redirect, url_for, request, session
@@ -38,6 +39,7 @@ def books():
 	categories.append(Category("Todos"))
 	files = []
 
+	deleteloadbook()
 	for book in books:
 		for category in book.categories:
 			if category not in categories:
@@ -45,7 +47,7 @@ def books():
 
 			if book.file:		
 				loadbook(book.file[0].file, book.id)	
-
+	
 	BookForm_ = BookForm()
 	updateBookForm_ = BookForm()
 
@@ -196,6 +198,14 @@ def loadbook(file, id):
 	book = open(f'app/static/files/book{id}.pdf', 'wb')
 	book.write(file)
 	book.close()
+
+def deleteloadbook():
+	basedir = "app/static/files"
+	files = listdir(basedir)
+
+	for file in files:
+		remove(f"{basedir}/{file}")
+
 
 
 
