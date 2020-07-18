@@ -43,7 +43,8 @@ def books():
 			if category not in categories:
 				categories.append(category)
 
-			loadbook(book.file[0].file, book.id)
+			if book.file:
+				loadbook(book.file[0].file, book.id)
 
 
 	BookForm_ = BookForm()
