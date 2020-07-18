@@ -200,7 +200,7 @@ def loadbook(file, id):
 	book.close()
 
 def deleteloadbook():
-	basedir = "app/static/files"
+	basedir = "static/files"
 	files = listdir(basedir)
 
 	for file in files:
