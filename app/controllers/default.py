@@ -43,9 +43,8 @@ def books():
 			if category not in categories:
 				categories.append(category)
 
-			if book.file:
-				loadbook(book.file[0].file, book.id)
-
+			if book.file:		
+				loadbook(book.file[0].file, book.id)	
 
 	BookForm_ = BookForm()
 	updateBookForm_ = BookForm()
@@ -101,7 +100,7 @@ def newBook():
 				comment=form['comentario'],
 				lido=lido)
 
-	if 'file' in request.files:
+	if (request.files['file'].filename != ''):
 		book.file = []
 		file = request.files['file']
 		fileB = file.read()
@@ -158,7 +157,7 @@ def updatebook(id=None):
 	book.comment = form['comentario']
 	book.lido = lido
 
-	if 'file' in request.files:
+	if (request.files['file'].filename != ''):
 		book.file = []
 		file = request.files['file']
 		fileB = file.read()
