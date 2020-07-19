@@ -109,6 +109,22 @@ body {
 	width: 300px;
 }
 
+.ul-size li:hover{
+	background-color: #d9534f !important;
+	border-radius: 0px; 
+}
+
+.ul-size a{
+	text-decoration: none;
+	color: black;
+	padding: 10px 30%;
+}
+
+.ul-size a:hover{	
+	color: white !important;
+	text-shadow: 1px 1px 1px #111111;
+}
+
 .book-space {
 	padding: 2% 4%;
 }

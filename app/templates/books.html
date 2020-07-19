@@ -70,16 +70,23 @@
 				<div class="col-md-3 buttons-conteiner">
 				    
 				    <button type="button" class="btn Selector-Button btn-outline-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
-							Alguma categoria em especifico?  <span class="caret"></span>
+				    	{% if categoria_now %}
+				    		Categoria: {{ categoria_now }}
+				    	{% else %}
+							Alguma categoria em especifico?
+				    	{% endif %}
+				    	<span class="caret"></span>
 				   	</button>
 
-				   	{% if categorias %}
-					    <ul class="dropdown-menu ul-size" role="menu">
+					<ul class="dropdown-menu ul-size" style="width: 100%;" role="menu">
+					    <li class="list-group-item"><a href="{{url_for('books')}}"> Todos </a></li>
+				   		
+				   		{% if categorias %}
 					    	{% for x in categorias %}
-					      		<li class="list-group-item">{{ x.categoria }}</li>
+					      		<li class="list-group-item"><a href="{{url_for('books', categoria=x.categoria)}}">{{ x.categoria }}</a></li>
 					      	{% endfor%}
-					    </ul>
-					{% endif %}
+						{% endif %}
+					</ul>
 	
 				</div> 
 			</div>		

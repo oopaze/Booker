@@ -31,14 +31,14 @@ def index():
 def perfil(username=None):
 	return render_template('perfil.html', title=current_user.username)
 
+@app.route('/book/<categoria>', methods=['GET', 'POST'])
 @app.route('/books', methods=['GET', 'POST'])
-def books():
+@login_required
+def books(categoria=None):
+	
 	books = Book.query.filter_by(owner=int(current_user.id)).all()
+	
 	categories = []
-
-	categories.append(Category("Todos"))
-	files = []
-
 	for book in books:
 		for category in book.categories:
 			if category not in categories:
@@ -47,6 +47,19 @@ def books():
 			if book.file:		
 				loadbook(book.file[0].file, book.id)	
 	
+	categoria_now = None
+	if categoria:
+		categoria_now = categoria
+		books_categoria = []
+		for book in books:
+			for categoria_book in book.categories:
+				if categoria_book.categoria == categoria:
+					books_categoria.append(book)
+
+		books = books_categoria
+
+	files = []
+
 	BookForm_ = BookForm()
 	updateBookForm_ = BookForm()
 
@@ -56,7 +69,8 @@ def books():
 	 						categorias=categories,
 	 						books=books,
 	 						newBook=BookForm_,
-	 						updatebook=updateBookForm_)
+	 						updatebook=updateBookForm_,
+	 						categoria_now = categoria_now)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
