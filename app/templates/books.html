@@ -78,12 +78,13 @@
 				    	<span class="caret"></span>
 				   	</button>
 
-					<ul class="dropdown-menu ul-size" style="width: 100%;" role="menu">
-					    <li class="list-group-item"><a href="{{url_for('books')}}"> Todos </a></li>
-				   		
+					<ul class="dropdown-menu ul-size" role="menu">
+					    
+					    <a class="list-group-item" href="{{url_for('books')}}"> Todos </a>
+					    
 				   		{% if categorias %}
 					    	{% for x in categorias %}
-					      		<li class="list-group-item"><a href="{{url_for('books', categoria=x.categoria)}}">{{ x.categoria }}</a></li>
+					      		<a class="list-group-item" href="{{url_for('books', categoria=x.categoria)}}">{{ x.categoria }}</a>
 					      	{% endfor%}
 						{% endif %}
 					</ul>
@@ -124,7 +125,7 @@
 							<button class="card card-size-control align-center bg-danger" style="width: 18rem;">
 						{% endif %}	
 							<div class="card-color">    
-							    <a  data-toggle="modal"  data-target="#read{{book.id}}"><img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+							    <a  data-toggle="modal" data-target="#read{{book.id}}"><img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
 							    </a>
 							  	<div class="card-body">
 							  		<div style="height: 180px">

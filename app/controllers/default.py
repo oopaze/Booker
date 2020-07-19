@@ -6,7 +6,6 @@ from flask_login import login_user, logout_user, login_required, current_user
 from app.models.table import Category, User, UserImage, Book, BookFile, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 
-#app.permanent_session_lifetime = timedelta(days=2)
 
 @app.route("/home", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
@@ -77,11 +76,14 @@ def login():
 
 	form = request.form
 	user = User.query.filter_by(username=form['username'].lower()).first()
-	
+
 	if user: 
 		if user.password == form['password']:
 			login_user(user)
 			session['user'] = user.serialize()
+			if 'remember_me' in form:
+				app.permanent_session_lifetime = timedelta(days=2)
+				
 			return redirect(url_for('books'))
 
 		else:
