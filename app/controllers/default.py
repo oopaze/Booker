@@ -40,7 +40,7 @@ def books(categoria=None):
 	categories = []
 	for book in books:
 		for category in book.categories:
-			if category not in categories:
+			if category not in categories and category.categoria != categoria:
 				categories.append(category)
 
 			if book.file:		
@@ -83,7 +83,7 @@ def login():
 			session['user'] = user.serialize()
 			if 'remember_me' in form:
 				app.permanent_session_lifetime = timedelta(days=2)
-				
+
 			return redirect(url_for('books'))
 
 		else:

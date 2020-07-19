@@ -73,7 +73,7 @@
 				    	{% if categoria_now %}
 				    		Categoria: {{ categoria_now }}
 				    	{% else %}
-							Alguma categoria em especifico?
+							Categoria: Todos
 				    	{% endif %}
 				    	<span class="caret"></span>
 				   	</button>
@@ -136,9 +136,9 @@
 								    <div class="categorias">
 								 	{% for category in book.categories %}
 								 		{% if book.lido %}
-											<label class="btn btn-outline-success"> {{ category.categoria }} </label>
+											<a class="btn btn-outline-success" href="{{url_for('books', categoria=category.categoria)}}">{{ category.categoria }} </a>
 										{% else %}
-											<label class="btn btn-outline-danger"> {{ category.categoria }}</label>
+											<a href="{{url_for('books', categoria=category.categoria)}}" class="btn btn-outline-danger"> {{ category.categoria }}</a>
 										{% endif %}
 									{% endfor %}
 									</div>
