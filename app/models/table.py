@@ -2,6 +2,8 @@ from app import db
 from datetime import datetime
 from flask import url_for 
 
+db.drop_all()
+
 class User(db.Model):
 	__tablename__ = 'users'
 
