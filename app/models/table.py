@@ -125,6 +125,9 @@ class BookFile(db.Model):
 		self.filename = filename
 
 def testRelation():
+	
+	db.drop_all()
+	db.create_all()
 
 	categorias = '''Documentario,Romance,Drama,Conto,
 					Crônica,Poesia,Carta,Ficção,
