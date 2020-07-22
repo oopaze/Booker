@@ -121,7 +121,7 @@ def newBook():
 		book.file = []
 		file = request.files['file']
 		fileB = file.read()
-		bookfile = BookFile(fileB)
+		bookfile = BookFile(fileB, file.filename)
 		book.file.append(bookfile)
 		
 	
@@ -178,7 +178,7 @@ def updatebook(id=None):
 		book.file = []
 		file = request.files['file']
 		fileB = file.read()
-		bookfile = BookFile(fileB)
+		bookfile = BookFile(fileB, file.filename)
 		book.file.append(bookfile)
 		
 
