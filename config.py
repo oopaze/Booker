@@ -1,17 +1,16 @@
 import os.path
-from os import environ
 
 
 class Config(object):
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	SECRET_KEY = 'MinhaNamoradaEUmaGostosinhaLinda'
-	
+
 	DEBUG = False
 	TESTING = False
 
 class ProductionConfig(Config):
-	postgres = 'postgres://gyiwsztabkirow:9caef036b7e4a88e8f8d8f2ab29f0a13302fcd17c27ad4fc6983c521ca90fd01@ec2-34-233-226-84.compute-1.amazonaws.com:5432/df1anrfho1a3ce'
 	
+	postgres = ''	
 	DATABASE_URI = postgres
 	SQLALCHEMY_DATABASE_URI = DATABASE_URI
 	DEBUG = False
@@ -25,5 +24,7 @@ class DevelopmentConfig(Config):
 	DEBUG = True
 
 class TestingConfig(Config):
-    TESTING = True
+    DEBUG = True
+    postgresLocal = 'postgres://postgres:1112@localhost:5432/postgres'
+    SQLALCHEMY_DATABASE_URI = postgresLocal
 
