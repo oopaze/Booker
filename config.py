@@ -14,7 +14,7 @@ class Config(object):
 
 class ProductionConfig(Config):
 	
-	postgres = 'postgres://icxiyyqzlopiqh:7f97f877c6623eaaf1780ef339e9424cedc8db3eaf88036ddd5f2b02af8af992@ec2-34-193-117-204.compute-1.amazonaws.com:5432/da4m2ia61i2qde'
+	postgres = 'postgres://gyiwsztabkirow:9caef036b7e4a88e8f8d8f2ab29f0a13302fcd17c27ad4fc6983c521ca90fd01@ec2-34-233-226-84.compute-1.amazonaws.com:5432/df1anrfho1a3ce'
 	
 	DATABASE_URI = postgres
 	SQLALCHEMY_DATABASE_URI = DATABASE_URI
