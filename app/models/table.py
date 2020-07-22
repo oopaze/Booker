@@ -126,7 +126,6 @@ class BookFile(db.Model):
 
 def testRelation():
 	
-	db.drop_all()
 	db.create_all()
 
 	categorias = '''Documentario,Romance,Drama,Conto,
