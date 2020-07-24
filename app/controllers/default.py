@@ -84,7 +84,7 @@ def login():
 			login_user(user)
 			session['user'] = user.serialize()
 			if 'remember_me' in form:
-				app.permanent_session_lifetime = timedelta(days=2)
+				app.permanent_session_lifetime = timedelta(minutes=2)
 
 			return redirect(url_for('books'))
 
