@@ -29,7 +29,5 @@ class DevelopmentConfig(Config):
 	DEBUG = True
 
 class TestingConfig(Config):
-    DEBUG = True
-    postgresLocal = 'postgres://postgres:1112@localhost:5432/booker-storage'
-    SQLALCHEMY_DATABASE_URI = postgresLocal
+    TESTING = True
 

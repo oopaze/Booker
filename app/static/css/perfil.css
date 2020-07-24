@@ -1,8 +1,29 @@
-#centerpage {
-	padding-top: 10px;
-	width: 100%;
-	min-height: 464px;
+#fundo {
+    background-image: url(../image/fundoPerfil.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+#transparencia{
+    background-color: rgba(0, 0, 0, 0.486);
+
+}
+#rodape p a{
+  margin: 5px 15px;
+  color: #fff;
+}
+#rodape p a:hover{
+  text-decoration: none;
 }
 
+.padrao{
+  max-width: 90%;
+  min-width: 50%;
+}
 
-
+.margem{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}

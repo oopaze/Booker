@@ -2,6 +2,8 @@ from app import db
 from datetime import datetime
 from flask import url_for 
 
+db.drop_all()
+
 class User(db.Model):
 	__tablename__ = 'users'
 
@@ -9,7 +11,8 @@ class User(db.Model):
 	username = db.Column(db.String(20), unique=True)
 	password = db.Column(db.String(30))
 	name = db.Column(db.String(30))
-	email = db.Column(db.String(30))
+	email = db.Column(db.String(30), unique=True)
+	criado_em = db.Column(db.DateTime, default=datetime.now())
 
 	image = db.relationship('UserImage', backref='users')
 	books = db.relationship('Book', backref='users')
@@ -115,11 +118,13 @@ class BookFile(db.Model):
 	__tablename__ = 'bookfile'
 	id = db.Column(db.Integer, primary_key=True)
 	file = db.Column(db.LargeBinary)
+	filename = db.Column(db.String(50), nullable=False)
 
 	book = db.Column(db.Integer, db.ForeignKey('books.id'))		
 	
-	def __init__(self, file):
+	def __init__(self, file, filename):
 		self.file = file
+		self.filename = filename
 
 def testRelation():
 	
@@ -166,3 +171,4 @@ def testRelation():
 	
 	db.session.commit()
 
+testRelation()

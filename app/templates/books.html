@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/book.css')}}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 	</head>
 
@@ -69,16 +70,24 @@
 				<div class="col-md-3 buttons-conteiner">
 				    
 				    <button type="button" class="btn Selector-Button btn-outline-danger dropdown-toggle" data-toggle="dropdown" id='select-bt'>
-							Alguma categoria em especifico?  <span class="caret"></span>
+				    	{% if categoria_now %}
+				    		Categoria: {{ categoria_now }}
+				    	{% else %}
+							Categoria: Todos
+				    	{% endif %}
+				    	<span class="caret"></span>
 				   	</button>
 
-				   	{% if categorias %}
-					    <ul class="dropdown-menu ul-size" role="menu">
+					<ul class="dropdown-menu ul-size" role="menu">
+					    
+					    <a class="list-group-item" href="{{url_for('books')}}"> Todos </a>
+					    
+				   		{% if categorias %}
 					    	{% for x in categorias %}
-					      		<li class="list-group-item">{{ x.categoria }}</li>
+					      		<a class="list-group-item" href="{{url_for('books', categoria=x.categoria)}}">{{ x.categoria }}</a>
 					      	{% endfor%}
-					    </ul>
-					{% endif %}
+						{% endif %}
+					</ul>
 	
 				</div> 
 			</div>		
@@ -94,8 +103,8 @@
 								    <p class="card-text">Escreva um comentário ou alguma coisa sobre o livro</p>
 							    </div>
 							    <div class="categorias">
-								    <label class="btn btn-outline-danger">Carta</label>
-								    <label class="btn btn-outline-danger">Ficção Cientifica</label>
+								    <label class="btn btn-outline-danger">Categoria 1</label>
+								    <label class="btn btn-outline-danger">Categirua 2</label>
 								</div>
 							    <hr style="width: 100%; clear: both;">
 						  	</div>
@@ -116,7 +125,8 @@
 							<button class="card card-size-control align-center bg-danger" style="width: 18rem;">
 						{% endif %}	
 							<div class="card-color">    
-							    <img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+							    <a  data-toggle="modal" data-target="#read{{book.id}}"><img class="card-img-top" src="/static/image/profilepattern.jpg" alt="Card image cap">
+							    </a>
 							  	<div class="card-body">
 							  		<div style="height: 180px">
 									    <h5 class="card-title">{{ book.titulo }}</h5>
@@ -126,9 +136,9 @@
 								    <div class="categorias">
 								 	{% for category in book.categories %}
 								 		{% if book.lido %}
-											<label class="btn btn-outline-success"> {{ category.categoria }} </label>
+											<a class="btn btn-outline-success" href="{{url_for('books', categoria=category.categoria)}}">{{ category.categoria }} </a>
 										{% else %}
-											<label class="btn btn-outline-danger"> {{ category.categoria }}</label>
+											<a href="{{url_for('books', categoria=category.categoria)}}" class="btn btn-outline-danger"> {{ category.categoria }}</a>
 										{% endif %}
 									{% endfor %}
 									</div>
@@ -136,10 +146,11 @@
 							  	</div>
 							  	<div class="card-footer-control">
 							  		{% if book.lido %}
-							  			<a class="card-button btn btn-success" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
+							  			<a class="card-button btn btn-success" onclick="myFunction('{{book.id}}')"> Excluir </a>
 								  		<a class="card-button btn btn-success" data-toggle="modal" data-target="#edit{{book.id}}"> Editar </a>
 									{% else %}
-								  		<a class="card-button btn btn-danger" href="{{ url_for('deleteBook', id = book.id)}}"> Excluir </a>
+								  		<a onclick="myFunction('{{book.id}}')" class="card-button btn btn-danger"> Excluir </a>
+								  		
 								  		<a class="card-button btn btn-danger" data-toggle="modal" data-target="#edit{{book.id}}"> Editar </a>
 									{% endif %}
 							  	</div>
@@ -160,7 +171,7 @@
 						      	</div>
 						      
 						      	<div class="modal-body" style="padding: 10px 30px;">
-						    		<form action="{{url_for('updatebook', id=book.id)}}" method="POST" id='form-book'>
+						    		<form action="{{url_for('updatebook', id=book.id)}}" method="POST" id='form-book' enctype="multipart/form-data">
 							      		<div class='book-form-style'>
 										    <label class="label-formart"> Titulo </label>
 								  	      	{{ updatebook.titulo(value=book.titulo, class='form-control', placeholder='Titulo do Livro')}}
@@ -209,9 +220,31 @@
 							</div>
 						</div>
 					</div>
+					{% if book.file %}
+						<div class="modal fade" id="read{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						    <div class="modal-content">
+						  
+						      <div class="modal-body">
+							  	<object data="static/files/book{{book.id}}.pdf" type="application/pdf" style="width: 100%;" height="500px;">
+								    <p>Seu navegador não tem um plugin pra PDF</p>
+								</object>
+							  </div>
 
+							  <div class="modal-footer"style='width: 100%;'>
+						        <a class="btn btn-primary" style="width: 64%;" href='static/files/book{{book.id}}.pdf' download><i class="fa fa-download"></i> Download </a>
+
+						        <button class="btn btn-dark" data-dismiss="modal" style="width: 30%;"> Fechar </button>
+
+						      </div>
+
+						      </div>
+						    </div>
+						</div>
+					{% endif %}
 				{% endfor %}
 			</div>
+		</div>
 		</div>
 
 		<div class="modal fade" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -291,7 +324,7 @@
 			      	</div>
 			      
 			      	<div class="modal-body" style="padding: 10px 30px;">
-			    		<form action="/newBook" method="POST" id='form-book'>
+			    		<form action="/newBook" method="POST" id='form-book' enctype="multipart/form-data">
 				      		<div class='book-form-style'>
 							    <label class="label-formart"> Titulo </label>
 					  	      	{{ newBook.titulo(class='form-control', placeholder='Titulo do Livro')}}
