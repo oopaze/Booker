@@ -172,4 +172,4 @@ def testRelation():
 	
 	db.session.commit()
 
-testRelation()
+
