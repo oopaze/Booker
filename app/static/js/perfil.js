@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function validacao(){
     var imagem = document.getElementById('foto').value
 
