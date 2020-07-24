@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
+	<title> Booker - {{ title }} </title>
+	<!-- Meta tags Obrigatórias -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<!--Estilo-->
+	<link rel="stylesheet" href="../static/css/perfil.css">
+	<!-- Estilo Cabeçalho -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
+	<!--JavaScript-->
+	<script src="../static/js/perfil.js"></script>
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name='viewport' content="width=device-width, initial-scale=1">
-
-		<title> Booker - {{ title }} </title>
-		<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css')}}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
-		
-	</head>
-	
-	<body>
+</head>
+<body>
+	<!-- Início Cabeçalho-->
 		<header>
 			<div class="container-fluid">
 			  	<div class="row">
@@ -45,32 +49,131 @@
 				</div>
 			</div>
 		</header>
+	<!--Fim Cabeçalho-->
 
-		<div id='centerpage'>
-			
+	<!--Início corpo perfil-->
+		<section>
+			<div class="container-fluid" id="fundo">
+				<div class="row pad-col-format">
 
-		</div>
+					
+					<div class="col-md-4 center-conteiner">
+					<!--Início foto do perfil-->
+						<div class="bg-white rounded-circle  m-auto" style="width: 200px; min-height: 200px;">
+							<img src="https://coomap.com.br/wp-content/uploads/2016/04/avatar1-200x200.png" alt="">
+						</div>
+					<!--Fim foto do perfil-->
+						
+						<div class=""> 
+							<div  class="" >
+							<!--Início formulário-->
+								<form action="" class="text-white">
+									<div class="border-primary text-center">
+										<div class="form-group">
+											<div class="col">
+												<input type="file" name="foto" class="" id="foto">
+												<label for="arquivo" class="col-form-label label-formatter" style="max-width:60%; min-width: 30%;">Adicionar nova foto</label>
+											</div>
+										</div>
+										
+									</div>
+									
 
-		<div class="modal fade" id="sairModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title lead" id="exampleModalLongTitle">Logout</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <p> Tem certeza que deseja fazer sair?</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-		        <a type="button" href="{{ url_for('logout') }}" class="btn btn-primary">Sair</a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+									<div class="border mb-2 rounded border-primary text-center pad-format">
+										
+										<div class="form-group row pt-2 bg">
+											<label for="nome" class="col-md-4  col-form-label label-formatter">Nome</label>
+											<input type="text" name="nome" value="{{current_user.name}}" disabled id="nome" class="rounded col-md-7 margem">
+										</div>
+										<div class="form-group row">
+											<label for="username" class="col-md-4 col-form-label label-formatter">Username</label>
+											<input type="text" name="username" value="{{current_user.username}}" disabled id="username" class="rounded col-md-7 margem">
+										</div>
+										<div class="form-group row">
+											<label for="email" class="col-md-4 col-form-label label-formatter">E-mail</label>
+											<input type="email" name="email" value="{{current_user.email}}" disabled id="email" class="col-md-7 rounded margem">
+										</div>
 
+									</div>
+
+									<div class="label-formatter lead att-formatter"> Atualize seus dados </div>
+
+									<div class="border mb-2 rounded border-primary text-center pad-format">
+										<div class="form-group row pt-2">
+											<label for="nome" class="col-md-4 col-form-label label-formatter">Novo Username</label>
+											<input type="text" name="nome"   id="nome" class="rounded col-md-7 margem">
+										</div>
+										<div class="form-group row">
+											<label for="username" class="col-md-4 col-form-label label-formatter">Confirmar</label>
+											<input type="text" name="username"  id="username" class="rounded col-md-7 margem">
+										</div>
+									</div>
+
+									<div  class="border  mb-2  rounded border-primary text-center pad-format">
+										<div class="form-group row pt-2">
+											<label for="" class="col-md-4 col-form-label label-formatter">Novo E-mail</label>
+											<input type="email" name="" id="novoEmail" class="rounded col-md-7 margem">
+										</div>
+										<div class="form-group row">
+											<label for="" class="col-md-4 col-form-label label-formatter">Confirmar</label>
+											<input type="email" name="" id="confirmEmail"  class="rounded col-md-7 margem">
+										</div>
+									</div>
+
+									<div  class="border  mb-2  rounded border-primary text-center pad-format">
+										<div class="form-group row pt-2">
+											<label for="novaSenha" class="col-md-4 col-form-label label-formatter">Nova senha</label>
+											<input type="password" name="" id="novaSenha"  class="rounded col-md-7 margem">
+										</div>
+										<div class="form-group row">
+											<label for="confirmSenha" class="col-md-4 col-form-label label-formatter">Confirmar</label>
+											<input type="password" name="confirmSenha" id="confirmSenha"  class="rounded col-md-7 margem">
+										</div>
+									</div>
+									
+								</form>
+							<!--Fim formulário-->
+								<div class="">
+									<button class="btn btn-block btn-dark pad-format" onclick="validacao()">Atualizar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7 offset-md-1 container center-conteiner	">
+						<div class="row">
+							{%if books %}
+							{% for book in books %}
+								<div class="col-md-12 card-book" style="width: 100%;">
+									<div class="card">
+									{%if book.lido %}
+									  <div class="card-header text-success" style="color: black;"> 
+									{% else %}
+									  <div class="card-header text-danger" style="color: black;">
+									{% endif %}
+									  	Adiconou um novo livro às {{book.criado_em.hour}}:{{book.criado_em.minute}}:{{book.criado_em.second}} do dia {{book.criado_em.day}}/{{book.criado_em.month}}/{{book.criado_em.year}}
+									  </div>
+									  
+									  <div class="card-body" style="color: black;">
+									  	<p> O Livro "{{book.titulo}}" do autor {{book.autor}} <br> Recebeu um comentário:  "{{book.comment}}"</p>
+									  </div>
+									</div>  
+								<hr>
+								</div>
+							{% endfor %}
+							{% else %}
+							<div class="col-md-10 offset-md-1 card-book">
+								<p class="lead text-justify" style="width: 100%;"> Seja bem vindo ao Booker {{current_user.username}} suas atividade ficarão registradas aqui! Por que não adicionar o seu primeiro livro agora? Vá na aba de livros e comece a usar de verdade o que o booker pode te oferecer.</p>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!--Fim corpo perfil-->
+
+	<!-- Modals-->
 		<div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
@@ -95,18 +198,40 @@
 		  </div>
 		</div>
 
+		<div class="modal fade" id="sairModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title lead" id="exampleModalLongTitle">Logout</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p> Tem certeza que deseja fazer sair?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+		        <a type="button" href="{{ url_for('logout') }}" class="btn btn-primary">Sair</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<!-- Fim Modals -->
 
+	<!--Início Rodapé-->
 		<footer class="bg-primary">
 		    <div class="footer-p">
 		    	<p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
 		    </div>
-
-		    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-			
 		</footer>
 
-	</body>
+	<!--Fim Rodapé-->
 
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="{{ url_for('static', filename='js/books.js')}}"></script>
+
+</body>
 </html>

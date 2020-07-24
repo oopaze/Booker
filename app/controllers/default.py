@@ -3,7 +3,7 @@ from datetime import timedelta
 from app import app, db, lm
 from flask import render_template, send_file, flash, redirect, url_for, request, session
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models.table import Category, User, UserImage, Book, BookFile, testRelation
+from app.models.table import Category, User, UserImage, Book, BookFile, Book_category, testRelation
 from app.models.forms import LoginForm, RegisterForm, BookForm
 
 
@@ -28,7 +28,9 @@ def index():
 @app.route('/perfil/<username>', methods=['GET', 'POST'])
 @login_required
 def perfil(username=None):
-	return render_template('perfil.html', title=current_user.username)
+	books = Book.query.filter_by(owner=int(current_user.id)).all()
+
+	return render_template('perfil.html', title=current_user.username, books=books)
 
 @app.route('/book/<categoria>', methods=['GET', 'POST'])
 @app.route('/books', methods=['GET', 'POST'])

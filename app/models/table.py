@@ -2,6 +2,8 @@ from app import db
 from datetime import datetime
 from flask import url_for 
 
+db.drop_all()
+
 class User(db.Model):
 	__tablename__ = 'users'
 
@@ -78,6 +80,7 @@ class Book(db.Model):
 	nota = db.Column(db.Float)
 	lido = db.Column(db.Boolean, default=False)
 	comment = db.Column(db.String(100), default="Aaaah, depois eu comento esse livro!")
+	criado_em = db.Column(db.DateTime, default=datetime.now())
 
 	owner = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -129,12 +132,7 @@ def testRelation():
 	db.drop_all()
 	db.create_all()
 
-	categorias = '''Documentario,Romance,Drama,Conto,
-					Crônica,Poesia,Carta,Ficção,
-					Aventura,Memórias,Biografia,Clássico,
-					História em Quadrinhos (HQ),Literatura fantástica,
-					Ficção científica,Fantasia,Sobrenatural,Realismo Mágico'''
-
+	categorias = 'Documentário,Romance,Drama,Conto,Crônica,Poesia,Carta,Ficção,Aventura,Memórias,Biografia,Clássico,História em Quadrinhos (HQ),Literatura fantástica,Ficção científica,Fantasia,Sobrenatural,Realismo Mágico'
 	for x in categorias.split(','):
 		db.session.add(Category(x))
 

@@ -30,7 +30,7 @@ category_list = [(categoria.id, categoria.categoria) for categoria in categories
 class BookForm(FlaskForm):
 	titulo = StringField('titulo', validators=[DataRequired()])
 	autor = StringField('autor', validators=[DataRequired()])
-	comentario = TextAreaField('comentario', validators=[DataRequired()])
+	comentario = TextAreaField('comentario')
 	categoria1 = SelectField('categoria1', choices=category_list, validators=[DataRequired()]) 
 	categoria2 = SelectField('categoria2', choices=category_list)
 	lido = BooleanField('lido')
