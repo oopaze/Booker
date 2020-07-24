@@ -1,112 +1,159 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
+	<title> Booker - {{ title }} </title>
+	<!-- Meta tags Obrigatórias -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name='viewport' content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-		<title> Booker - {{ title }} </title>
-		<link rel="icon" href="{{ url_for('static', filename='image/icon.png') }}" type="image/icon type">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css')}}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css')}}">
-		
-	</head>
-	
-	<body>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<!--Estilo-->
+	<link rel="stylesheet" href="../static/css/perfil.css">
+
+	<!--JavaScript-->
+	<script src="../static/js/perfil.js"></script>
+
+</head>
+<body>
+	<!-- Início Cabeçalho-->
 		<header>
-			<div class="container-fluid">
-			  	<div class="row">
-					<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			  			<div class="col-md-4">
-					  		<div id='logo-menu'>	
-								<a id='logo' href="{{url_for('books')}}">
-									<h2 class="display-4"> Booker </h2>
-								</a>
-							</div>
-							<div id='button-menu'>
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-								    <span class="navbar-toggler-icon"></span>
-								</button>
-							</div>
-						</div>
-						<div class="col-md-4 offset-md-4">
-						  	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-						    	
-							    <a class="menu-item isDisabled" href="{{ url_for('perfil', username=current_user.username) }}">Perfil</a>
-							    <a class="menu-item" href="{{ url_for('books') }}">Livros</a>
-							    <a class="menu-item" data-toggle="modal" data-target="#sobreModal"> Sobre </a>
-							    <a class="menu-item" data-toggle="modal" data-target="#sairModal">Sair</a>
-							    
-						  	</div>
-						</div>
-					</nav>
+			<div class="container">
+				<div class="row bg-primary">
+					<div class="display-4 text-white col-md-12">Booker</div>
 				</div>
 			</div>
 		</header>
+	<!--Fim Cabeçalho-->
 
-		<div id='centerpage'>
-			
+	<!--Início corpo perfil-->
+		<section>
+			<div class="container">
+				<div class="row justify-content-md-center border-top border-top	border-bottom " id="fundo">
 
-		</div>
+					
+					<div class="col-md-8 col-sm pt-5 pb-5 border mt-2 mb-2 rounded" id='transparencia'>
+					<!--Início foto do perfil-->
+						<div class="bg-white rounded-circle  m-auto" style="width: 200px;height: 200px;">
+							<img src="https://coomap.com.br/wp-content/uploads/2016/04/avatar1-200x200.png" alt="">
+						</div>
+					<!--Fim foto do perfil-->
+						
+						<div class=""> 
+							<div  class="m-auto pt-4 rounded padrao" >
+							<!--Início formulário-->
+								<form action="" class="text-white">
+									<div class="border mb-2 rounded border-primary text-center">
+										<div class="form-group  pt-2">
+											<div class="col">
+											<label for="arquivo" class="col-form-label ">Adiconar nova foto</label>
+											</div>
+											<div class="col">
+												<input type="file" name="foto" class="" id="foto">
+											</div>
+										</div>
+										
+									</div>
+									
 
-		<div class="modal fade" id="sairModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title lead" id="exampleModalLongTitle">Logout</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <p> Tem certeza que deseja fazer sair?</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-		        <a type="button" href="{{ url_for('logout') }}" class="btn btn-primary">Sair</a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+									<div class="border mb-2 rounded border-primary text-center ">
+										
+										<div class="form-group row pt-2 bg">
+											<label for="nome" class="col-md-3  col-form-label ">Nome:</label>
+											<input type="text" name="nome" value="login" disabled id="nome" class="rounded col-md-8 margem">
+										</div>
+										<div class="form-group row">
+											<label for="username" class="col-md-3 col-form-label ">User Name:</label>
+											<input type="text" name="username" value="exemplo" disabled id="username" class="rounded col-md-8 margem">
+										</div>
+										<div class="form-group row">
+											<label for="email" class="col-md-3 col-form-label ">E-mail:</label>
+											<input type="email" name="email" value="exemplo.login@gmail.com" disabled id="email" class="col-md-8 rounded margem">
+										</div>
 
-		<div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle"> Sobre nós </h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <p class="lead text-justify" style="padding: 10px 10px;">  
-		        	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et varius justo, a feugiat magna. Suspendisse pharetra luctus lacus, ut aliquam lacus bibendum nec. Ut in felis mauris. Pellentesque sollicitudin eros quam, ut laoreet leo convallis eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut quis iaculis augue, eleifend convallis magna. Aliquam commodo molestie dignissim. 
-		        	<br>
-		        	Donec quis elementum ipsum. Donec dapibus massa vitae ligula ultrices pharetra. Sed porttitor posuere ultricies. Cras eget rhoncus elit, quis aliquet tortor. Praesent vel sapien arcu. Proin laoreet nisl sed sapien pharetra scelerisque ac eu eros. Nam sollicitudin fringilla ligula, fermentum sollicitudin felis scelerisque quis. Donec auctor nulla id neque lobortis, sit amet vulputate orci commodo.
-				</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-		        <a type="button" href="" class="btn btn-primary">Doe um Café</a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+									</div>
 
+									<div class="border mb-2 rounded border-primary text-center ">
+										<div class="form-group row pt-2">
+											<label for="nome" class="col-md-3 col-form-label ">Novo Nome:</label>
+											<input type="text" name="nome"   id="nome" class="rounded col-md-8 margem">
+										</div>
+										<div class="form-group row">
+											<label for="username" class="col-md-3 col-form-label ">Novo User Name:</label>
+											<input type="text" name="username"  id="username" class="rounded col-md-8 margem">
+										</div>
+						
 
-		<footer class="bg-primary">
-		    <div class="footer-p">
-		    	<p class="text-light small mb-4 mb-lg-0">© Booker 2020. Todos os direitos reservados.</p>
-		    </div>
+									</div>
 
-		    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-			
+									<div  class="border  mb-2  rounded border-primary text-center ">
+										<div class="form-group row pt-2">
+											<label for="" class="col-md-3 col-form-label">Novo E-mail:</label>
+											<input type="email" name="" id="novoEmail" class="rounded col-md-8 margem">
+										</div>
+										<div class="form-group row">
+											<label for="" class="col-md-3 col-form-label">Confirmar:</label>
+											<input type="email" name="" id="confirmEmail"  class="rounded col-md-8 margem">
+										</div>
+									</div>
+
+									<div  class="border  mb-2  rounded border-primary text-center">
+										<div class="form-group row pt-2">
+											<label for="novaSenha" class="col-md-3 col-form-label">Nova senha:</label>
+											<input type="password" name="" id="novaSenha"  class="rounded col-md-8 margem">
+										</div>
+										<div class="form-group row">
+											<label for="confirmSenha" class="col-md-3 col-form-label">Confirmar:</label>
+											<input type="password" name="confirmSenha" id="confirmSenha"  class="rounded col-md-8 margem">
+										</div>
+									</div>
+
+										
+										
+
+									
+								</form>
+							<!--Fim formulário-->
+								<div>
+									<button class="btn btn-block btn-outline-info" onclick="validacao()">Atualizar Dados</button>
+								</div>
+								<div id="res">
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	<!--Fim corpo perfil-->
+
+	<!--Início Rodapé-->
+		<footer>
+			<div class="container">
+				<div class="row bg-primary">
+					<div class="col-md-8 text-white pt-3" id="rodape">
+						<p>
+							<a href="">Perfil</a>
+							<a href="">Livros</a>
+							<a href="">Sobre</a>
+							<a href="">Sair</a>
+
+						</p>
+					</div>
+
+					
+				</div>
+			</div>
 		</footer>
 
-	</body>
+	<!--Fim Rodapé-->
 
+
+</body>
 </html>
