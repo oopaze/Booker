@@ -97,7 +97,7 @@ def login():
 def newUser():
 
 	form = request.form
-	user = User(username=form['username'].lower(), password=form['password'], name=form['password'], email=form['password'])
+	user = User(username=form['username'].lower(), password=form['password'], name=form['name'], email=form['email'])
 
 	db.session.add(user)
 	db.session.commit()
